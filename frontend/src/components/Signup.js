@@ -1,22 +1,48 @@
-import { useState } from 'react';
-import { User } from '../assets/icons/icons';
-import { useNavigate } from 'react-router-dom';
-import { createLogin } from '../handlers/loginHandler';
-import { useGlobalContext } from '../features/TaskContext';
+import { useState } from 'react'
+import { User } from '../assets/icons/icons'
+import { useNavigate } from 'react-router-dom'
+import { signup } from '../handlers/authHandler'
+import { useGlobalContext } from '../features/TaskContext'
 
 function Signup() {
-  const { user } = useGlobalContext();
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const { user } = useGlobalContext()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [displayError, setDisplayError] = useState('An error has occured');
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [displaySuccess, setDisplaySuccess] = useState('Success');
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [displayError, setDisplayError] = useState('An error has occurred')
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [displaySuccess, setDisplaySuccess] = useState('Success')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // setIsSuccess(false)
+    // setIsError(false)
+    setIsLoading(true)
+    if (password === confirmPassword) {
+      signup({ username: name, email, password })
+        .then((resp) => {
+          console.log({ resp })
+          setIsLoading(false)
+          setIsSuccess(true)
+          setDisplaySuccess(resp.data)
+        })
+        .catch((err) => {
+          setDisplayError(err.response?.data)
+          setIsLoading(false)
+          setIsError(true)
+        })
+    }
+    setName('')
+    setPassword('')
+    setConfirmPassword('')
+  }
+
   return (
     <div>
       {user ? (
@@ -24,32 +50,8 @@ function Signup() {
       ) : (
         <div>
           <h1 className="login-main-heading">Signup</h1>
-          <form
-            className="login-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setIsSuccess(false);
-              setIsError(false);
-              setIsLoading(true);
-              if (password === confirmPassword) {
-                createLogin({ username: name, password: password })
-                  .then((resp) => {
-                    setIsLoading(false);
-                    setIsSuccess(true);
-                    setDisplaySuccess(resp.data);
-                  })
-                  .catch((err) => {
-                    setDisplayError(err.response?.data);
-                    setIsLoading(false);
-                    setIsError(true);
-                  });
-              }
-              setName('');
-              setPassword('');
-              setConfirmPassword('');
-            }}
-          >
-            <label htmlFor="name"> Userame -</label>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <label htmlFor="name">Username -</label>
             <br />
             <input
               className="login-input name"
@@ -59,6 +61,19 @@ function Signup() {
               placeholder="username"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <br />
+            <label htmlFor="email">Email -</label>
+            <br />
+            <input
+              className="login-input name"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <br />
@@ -116,6 +131,6 @@ function Signup() {
         </div>
       )}
     </div>
-  );
+  )
 }
-export default Signup;
+export default Signup

@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import { User } from '../assets/icons/icons';
-import { useNavigate } from 'react-router-dom';
-import { getLogin } from '../handlers/loginHandler';
-import { useGlobalContext } from '../features/TaskContext';
+import { useEffect, useState } from 'react'
+import { User } from '../assets/icons/icons'
+import { useNavigate } from 'react-router-dom'
+import { login } from '../handlers/authHandler'
+import { useGlobalContext } from '../features/TaskContext'
 
 function Login() {
-  const { user, setUser, loginBtn, setLoginBtn } = useGlobalContext();
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const { user, setUser, loginBtn, setLoginBtn } = useGlobalContext()
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [displayError, setDisplayError] = useState('An error has occured');
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [displayError, setDisplayError] = useState('An error has occurred')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   useEffect(() => {
-    if (!loginBtn) setLoginBtn(true);
-  }, []);
+    if (!loginBtn) setLoginBtn(true)
+  }, [])
   return (
     <div>
       {user ? (
@@ -27,23 +27,23 @@ function Login() {
           <form
             className="login-form"
             onSubmit={(e) => {
-              e.preventDefault();
-              setIsError(false);
-              setIsLoading(true);
-              getLogin({ username: name, password: password })
+              e.preventDefault()
+              setIsError(false)
+              setIsLoading(true)
+              login({ username: name, password })
                 .then((resp) => {
-                  localStorage.setItem('user', JSON.stringify(resp?.data));
-                  setUser(resp?.data);
-                  navigate(`/tasks`);
+                  localStorage.setItem('user', JSON.stringify(resp?.data))
+                  setUser(resp?.data)
+                  navigate(`/tasks`)
                 })
                 .catch((err) => {
-                  setDisplayError(err?.response?.data);
-                  setIsLoading(false);
-                  setIsError(true);
-                });
+                  setDisplayError(err?.response?.data)
+                  setIsLoading(false)
+                  setIsError(true)
+                })
 
-              setName('');
-              setPassword('');
+              setName('')
+              setPassword('')
             }}
           >
             <label htmlFor="name"> Username -</label>
@@ -88,7 +88,7 @@ function Login() {
           </form>
           <div>
             <p>
-              Not have an account:
+              {"Don't have an account?"}
               <button
                 className="signup-reflink"
                 onClick={() => navigate('/signup')}
@@ -103,6 +103,6 @@ function Login() {
         </div>
       )}
     </div>
-  );
+  )
 }
-export default Login;
+export default Login

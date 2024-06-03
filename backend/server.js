@@ -1,10 +1,10 @@
-const express = require('express');
-const app = express();
-const dbConnect = require('./db/dbConnect');
-const { default: mongoose } = require('mongoose');
-const PORT = process.env.PORT || '3001';
-require('dotenv').config();
-const cors = require('cors');
+const express = require('express')
+const app = express()
+const dbConnect = require('./db/dbConnect')
+const { default: mongoose } = require('mongoose')
+const PORT = process.env.PORT || '3001'
+require('dotenv').config()
+const cors = require('cors')
 // const corsOptions = {
 //   origin: [
 //     '*',
@@ -13,22 +13,24 @@ const cors = require('cors');
 //   ],
 // };
 
-dbConnect();
+dbConnect()
 
 // app.use(cors(corsOptions));
-app.use(cors());
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
-app.use('/api/v1/tasks', require('./routes/tasksRoutes'));
-app.use('/api/v1/login', require('./routes/loginRoutes'));
+app.use('/api/v1/tasks', require('./routes/tasksRoutes'))
+app.use('/api/v1/login', require('./routes/loginRoute'))
+app.use('/api/v1/signup', require('./routes/signupRoute'))
+app.use('/api/v1/updateProfile', require('./routes/updateProfileRoute'))
 
 mongoose.connection.once('open', () => {
-  console.log('connected to database');
+  console.log('connected to database')
   app.listen(PORT, () => {
-    console.log(`listening on port ${PORT}...`);
-  });
-});
+    console.log(`listening on port ${PORT}...`)
+  })
+})
 
 mongoose.connection.on('error', (err) => {
-  console.log(err);
-});
+  console.log(err)
+})

@@ -1,24 +1,24 @@
-import { useEffect, useState } from 'react';
-import { updateLogin } from '../handlers/loginHandler';
-import { useGlobalContext } from '../features/TaskContext';
+import { useEffect, useState } from 'react'
+import { updateLogin } from '../handlers/authHandler'
+import { useGlobalContext } from '../features/TaskContext'
 
 function UpdateLogin() {
-  const { user, setUser } = useGlobalContext();
+  const { user, setUser } = useGlobalContext()
 
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [displayError, setDisplayError] = useState('An error has occured');
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [displayError, setDisplayError] = useState('An error has occured')
+  const [isSuccess, setIsSuccess] = useState(false)
 
   useEffect(() => {
     if (user) {
-      setName(user?.username || '');
-      setPassword(user?.password || '');
+      setName(user?.username || '')
+      setPassword(user?.password || '')
     }
-  }, [user]);
+  }, [user])
 
   return (
     <div>
@@ -30,26 +30,26 @@ function UpdateLogin() {
           <form
             className="login-form"
             onSubmit={(e) => {
-              e.preventDefault();
-              setIsError(false);
-              setIsSuccess(false);
-              setIsLoading(true);
+              e.preventDefault()
+              setIsError(false)
+              setIsSuccess(false)
+              setIsLoading(true)
               updateLogin(user?.username, {
                 username: name,
                 password: password,
               })
                 .then((resp) => {
-                  localStorage.setItem('user', JSON.stringify(resp?.data));
-                  setUser(resp?.data);
-                  setIsSuccess(true);
-                  setIsLoading(false);
+                  localStorage.setItem('user', JSON.stringify(resp?.data))
+                  setUser(resp?.data)
+                  setIsSuccess(true)
+                  setIsLoading(false)
                 })
                 .catch((err) => {
-                  console.log('err: ', err);
-                  setDisplayError(err?.response?.data);
-                  setIsLoading(false);
-                  setIsError(true);
-                });
+                  console.log('err: ', err)
+                  setDisplayError(err?.response?.data)
+                  setIsLoading(false)
+                  setIsError(true)
+                })
             }}
           >
             <label htmlFor="name"> Username -</label>
@@ -92,6 +92,6 @@ function UpdateLogin() {
         </div>
       )}
     </div>
-  );
+  )
 }
-export default UpdateLogin;
+export default UpdateLogin
