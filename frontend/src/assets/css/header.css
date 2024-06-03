@@ -1,0 +1,72 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.task-manager-header {
+  border-radius: 20px;
+}
+
+.header-main {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-main-heading {
+  font-weight: 500;
+  font-size: 20px;
+}
+.layout-front .header-main-heading {
+  color: #fff;
+}
+.layout-all .header-main-heading {
+  color: #000;
+}
+
+.header-button {
+  padding: 8px 20px;
+  font-weight: 500;
+  margin-right: 10px;
+  border: 0px solid;
+}
+
+.header-logo-container {
+  font-style: italic;
+  border-radius: 200px;
+  width: 28px;
+  height: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+  padding-right: 2px;
+}
+.layout-front .header-logo-container {
+  background-color: #fff;
+  color: #3e66fb;
+}
+.layout-all .header-logo-container {
+  background-color: #3e66fb;
+  color: #fff;
+}
+
+.nav-container {
+  border-radius: 200px;
+  background-color: transparent;
+  padding: 4px;
+  display: flex;
+}
+.layout-all .nav-container {
+  border: 1px solid #000;
+}
+.layout-front .nav-container {
+  border: 1px solid #fff;
+}
+.layout-all .nav-container svg * {
+  stroke: #000;
+}

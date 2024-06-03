@@ -1,0 +1,68 @@
+.main-container {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.task-total-main {
+  padding: 20px 55px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tasks-todo {
+  font-weight: bold;
+  margin: 0;
+}
+.tasks-todo span {
+  color: #d12d2d;
+}
+
+.cta-container {
+  position: relative;
+}
+.task-create-button {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.task-user-heading {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  flex: 1;
+  font-size: 21px;
+  color: #000;
+}
+
+.tasks-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.lists {
+  width: 28%;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 7px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-icons {
+  display: flex;
+  gap: 20px;
+}

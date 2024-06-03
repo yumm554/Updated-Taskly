@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import { Plus } from '../assets/icons/icons';
+import '../assets/css/tasks.css';
+import { Link, useNavigate } from 'react-router-dom';
 import { accessAllTasks } from '../handlers/tasksHandler';
 import { useEffect, useState } from 'react';
 import { useGlobalContext } from '../features/TaskContext';
+import { ReactComponent as ChevronRight } from '../assets/images/chevron-right.svg';
 import GetTaskList from './GetTaskList';
 
 function TaskList() {
@@ -41,17 +42,28 @@ function TaskList() {
   return (
     <div>
       {!user ? (
-        <p>This page can't access without login</p>
+        navigate('/login')
       ) : (
         <div className="main-container">
-          <div className="task-total-main">
-            <p>Today</p>
-            <h2>
-              {counter}/{taskData?.length || 0} tasks
+          <div className="cta-container">
+            <Link to="new">
+              <button className="task-create-button">
+                Create Task <ChevronRight />
+              </button>
+            </Link>
+            <h2 className="task-user-heading">
+              {user ? `Hello ${user?.username}!` : ''}
             </h2>
           </div>
+          <div className="task-total-main">
+            <p className="tasks-todo">
+              Todo <span>*</span>
+            </p>
+            <b className="task-count">
+              {counter}/{taskData?.length || 0} tasks
+            </b>
+          </div>
           <div>
-            <h2 className="task-list-heading">TaskList</h2>
             {isLoading ? (
               <div class="loader"></div>
             ) : isError ? (
@@ -61,18 +73,6 @@ function TaskList() {
                 <GetTaskList data={taskData} />
               </div>
             )}
-
-            <div className="add-new-button-div new-task">
-              <button
-                className="add-new-button"
-                onClick={() => {
-                  navigate('new');
-                }}
-              >
-                <Plus />
-                New task
-              </button>
-            </div>
           </div>
         </div>
       )}
