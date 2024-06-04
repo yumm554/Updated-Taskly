@@ -1,7 +1,9 @@
 import '../assets/css/updateTask.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getTask, updateTask } from '../handlers/tasksHandler';
 import { useGlobalContext } from '../features/TaskContext';
+import { ReactComponent as Blocks } from '../assets/images/update-task-blocks.svg';
 
 function UpdateTaskForm() {
   const { task, user } = useGlobalContext();
@@ -10,23 +12,25 @@ function UpdateTaskForm() {
   const [isSuccess, setIsSucces] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTask().catch((err) => setIsError(true));
   }, [isError]);
 
   return (
-    <div className="updateTask-main">
+    <div className="updatetask-main">
       {!user ? (
-        <p>This page can't access without login</p>
+        navigate('/login')
       ) : (
-        <div>
-          <h1 className="add-task-heading">Task</h1>
+        <div className="updatetask-form-container">
+          <h1 className="update-task-heading">Task</h1>
           {isError ? (
             <p className="error">An error has occured</p>
           ) : (
             <div>
               <form
+                className="updatetask-form"
                 onSubmit={(e) => {
                   e.preventDefault();
                   setIsError(false);
@@ -43,7 +47,7 @@ function UpdateTaskForm() {
                     });
                 }}
               >
-                <label htmlFor="id">id - </label>
+                <label htmlFor="id">- id</label>
                 <br />
                 <input
                   className="task-id-input"
@@ -53,32 +57,35 @@ function UpdateTaskForm() {
                   disabled
                 />
                 <br />
-                <label htmlFor="task-name">Title -</label>
+                <label htmlFor="task-name">- title</label>
                 <br />
-                <input
+                <textarea
                   className="task-name-input"
                   id="task-name"
                   name="task-name"
                   type="text"
                   placeholder="Enter task name"
                   value={name}
+                  rows={4}
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
                 />
-                <label htmlFor="task-completed">Completed -</label>
-                <input
-                  className="task-completed-input"
-                  id="task-completed"
-                  name="task-completed"
-                  type="checkbox"
-                  checked={completed}
-                  onChange={(e) => {
-                    setCompleted(!completed);
-                  }}
-                />
-                <div className="add-new-button-div form">
-                  <button className="add-new-button form" type="submit">
+                <div className="input-container">
+                  <input
+                    className="task-completed-input"
+                    id="task-completed"
+                    name="task-completed"
+                    type="checkbox"
+                    checked={completed}
+                    onChange={(e) => {
+                      setCompleted(!completed);
+                    }}
+                  />
+                  <label htmlFor="task-completed">Completed -</label>
+                </div>
+                <div className="update-new-button-div form">
+                  <button className="update-new-button form" type="submit">
                     Save
                   </button>
                   {isLoading && <div className="loader"></div>}
@@ -88,6 +95,9 @@ function UpdateTaskForm() {
                   {isError && <p className="error">An error has occured</p>}
                 </div>
               </form>
+              <div className="update-task-blocks main">
+                <Blocks />
+              </div>
             </div>
           )}
         </div>

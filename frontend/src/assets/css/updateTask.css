@@ -1,13 +1,12 @@
-.addtask-main {
+.updatetask-main {
   padding-top: 8%;
   display: flex;
   width: 100%;
-  max-height: 450px;
   justify-content: center;
+  position: relative;
 }
 
-.addtask-form-container {
-  height: 100%;
+.updatetask-form-container {
   position: relative;
   overflow: hidden;
   margin: 0 auto;
@@ -16,21 +15,32 @@
   border-radius: 15px 15px 0 0;
 }
 
-.add-task-heading {
+.update-task-heading {
   margin-top: 0;
-  color: #3e66fb;
-  font-size: 50px;
+  color: #000;
+  font-size: 21px;
   text-align: center;
 }
 
-.add-task-blocks {
+.update-task-blocks {
   width: fit-content;
 }
-.add-task-blocks.main {
-  margin: 62px 0 -62px auto;
+.update-task-blocks.main {
+  margin: 0px 0 -55px auto;
 }
 
-.add-new-button {
+.update-new-button {
   margin: 20px auto 0 0;
   padding: 12px 50px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-completed-input {
+  width: fit-content;
+  box-shadow: none;
 }
