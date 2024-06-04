@@ -32,8 +32,8 @@ function UpdateLogin() {
           <form
             className="login-form"
             onSubmit={(e) => {
-              e.preventDefault()
               if (!name && !password) {
+                e.preventDefault()
                 return
               }
               setIsError(false)
@@ -100,7 +100,7 @@ function UpdateLogin() {
               </button>
               {isLoading && <div className="loader"></div>}
               {isSuccess && (
-                <p className="success-added">Added, successfully</p>
+                <p className="success-added">Update, successfully</p>
               )}
               {isError && (
                 <p className="error">

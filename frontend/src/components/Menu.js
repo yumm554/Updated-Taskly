@@ -1,16 +1,16 @@
-import { useNavigate } from 'react-router-dom';
-import { useGlobalContext } from '../features/TaskContext';
+import { useNavigate } from 'react-router-dom'
+import { useGlobalContext } from '../features/TaskContext'
 
 function Menu() {
-  const { user: currentUser, setUser } = useGlobalContext();
-  const navigate = useNavigate();
+  const { user: currentUser, setUser } = useGlobalContext()
+  const navigate = useNavigate()
   return (
     <div className="menu">
       <ul>
         <li>
           <button
             onClick={() => {
-              navigate(`/${currentUser.username}`);
+              navigate(`/profile`)
             }}
             className="transparent-btn"
           >
@@ -21,9 +21,9 @@ function Menu() {
         <li>
           <button
             onClick={() => {
-              localStorage.clear();
-              setUser(null);
-              navigate('/login');
+              localStorage.clear()
+              setUser(null)
+              navigate('/login')
             }}
             className="transparent-btn"
           >
@@ -32,6 +32,6 @@ function Menu() {
         </li>
       </ul>
     </div>
-  );
+  )
 }
-export default Menu;
+export default Menu

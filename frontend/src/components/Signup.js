@@ -111,7 +111,7 @@ function Signup() {
               </button>
               {isLoading && <div className="loader"></div>}
               {isError && <p className="error">{displayError}</p>}
-              {isSuccess && <p className="succes-added">{displaySuccess}</p>}
+              {isSuccess && <p className="success-added">{displaySuccess}</p>}
             </div>
           </form>
           <div>
