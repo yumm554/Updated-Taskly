@@ -1,3 +1,4 @@
+import '../assets/css/updateTask.css';
 import { useEffect, useState } from 'react';
 import { getTask, updateTask } from '../handlers/tasksHandler';
 import { useGlobalContext } from '../features/TaskContext';
@@ -15,7 +16,7 @@ function UpdateTaskForm() {
   }, [isError]);
 
   return (
-    <div>
+    <div className="updateTask-main">
       {!user ? (
         <p>This page can't access without login</p>
       ) : (

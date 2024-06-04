@@ -1,10 +1,11 @@
+import '../assets/css/header.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { Avatar } from '../assets/icons/icons';
+import { ReactComponent as Avatar } from '../assets/images/user.svg';
 import { useEffect } from 'react';
 import Menu from './Menu';
 import { useGlobalContext } from '../features/TaskContext';
-function Header({ currentUser }) {
-  const { welcome, setWelcome, menu, setMenu, loginBtn, setLoginBtn } =
+function Header() {
+  const { welcome, setWelcome, menu, setMenu, loginBtn, setLoginBtn, user } =
     useGlobalContext();
 
   const navigate = useNavigate();
@@ -18,27 +19,27 @@ function Header({ currentUser }) {
       <header className="task-manager-header">
         <div className="header-main">
           <Link to="/">
-            <h1 className="header-main-heading">Taskly</h1>
+            <div className="header-container">
+              <div className="header-logo-container">t</div>
+              <h1 className="header-main-heading">Taskly</h1>
+            </div>
           </Link>
-          {currentUser ? (
+          {user ? (
             <div className="user-details-div">
               {welcome ? (
                 ''
               ) : (
                 <button
-                  className="header-login-button"
+                  className="header-button"
                   onClick={() => navigate(`/tasks`)}
                 >
                   Tasks
                 </button>
               )}
 
-              <button
-                className="transparent-btn"
-                onClick={() => setMenu(!menu)}
-              >
+              <nav className="nav-container" onClick={() => setMenu(!menu)}>
                 <Avatar />
-              </button>
+              </nav>
               {menu && <Menu />}
             </div>
           ) : (
@@ -46,20 +47,16 @@ function Header({ currentUser }) {
               {loginBtn ? (
                 ''
               ) : (
-                <button className="" onClick={() => navigate('/login')}>
+                <button
+                  className="header-button"
+                  onClick={() => navigate('/login')}
+                >
                   User Login
                 </button>
               )}
             </div>
           )}
         </div>
-        {currentUser ? (
-          <div>
-            <h2>Hello, {currentUser?.username}</h2>
-          </div>
-        ) : (
-          ''
-        )}
       </header>
     </div>
   );

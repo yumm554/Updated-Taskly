@@ -15,15 +15,15 @@ function Task(props) {
       {completed ? (
         <div className="completed-div">
           <Completed />
-          <li className="completed">{name}</li>
+          <p className="completed">{name}</p>
         </div>
       ) : (
-        <li>{name}</li>
+        <p>{name}</p>
       )}
       <div className="list-icons">
         {(isDeleteLoading && <div className="loader"></div>) ||
           (isDeleteError && <p className="error">error</p>)}
-        <button
+        <div
           className="transparent-btn"
           onClick={() => {
             setIsDeleteLoading(true);
@@ -32,8 +32,8 @@ function Task(props) {
           }}
         >
           <Edit />
-        </button>
-        <button
+        </div>
+        <div
           className="transparent-btn"
           onClick={() => {
             setIsDeleteLoading(true);
@@ -49,7 +49,7 @@ function Task(props) {
           }}
         >
           <Delete />
-        </button>
+        </div>
       </div>
     </div>
   );
