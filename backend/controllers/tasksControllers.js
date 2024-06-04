@@ -4,7 +4,6 @@ const getAllTask = async (req, res) => {
   try {
     const { username } = req.params
     const task = await Task.find({ username })
-    console.log(username)
     if (!task) {
       res.status(200).json([])
     }
@@ -16,13 +15,14 @@ const getAllTask = async (req, res) => {
 
 const createTask = async (req, res) => {
   try {
-    const { name, username } = await req.body
+    const { name, username, dateCreated } = await req.body
     if (!name) {
-      res.status(400).json({ message: 'must provide name' })
+      return res.status(400).json({ message: 'must provide name' })
     }
 
-    const task = await Task.create({ name, username })
-    res.status(200).json({ message: `Task created` })
+    const task = await Task.create({ name, username, dateCreated })
+    console.log({ task })
+    return res.status(200).json({ message: `Task created` })
   } catch (err) {
     console.log(err)
   }

@@ -1,18 +1,18 @@
-import { useGlobalContext } from '../features/TaskContext';
-import { deleteTask } from '../handlers/tasksHandler';
-import { Completed, Delete, Edit } from '../assets/icons/icons';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../features/TaskContext'
+import { deleteTask } from '../handlers/tasksHandler'
+import { Completed, Delete, Edit } from '../assets/icons/icons'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Task(props) {
-  const navigate = useNavigate();
-  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-  const [isDeleteError, setIsDeleteError] = useState(false);
-  const { setTask, getAgain, setGetAgain } = useGlobalContext();
-  const { _id: taskId, name, completed } = props;
+  const navigate = useNavigate()
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false)
+  const [isDeleteError, setIsDeleteError] = useState(false)
+  const { setTask, getAgain, setGetAgain } = useGlobalContext()
+  const { _id: taskId, name, completed, dateCreated } = props
   return (
     <div className="lists">
-      <div className="list-task-date">24 may 24</div>
+      <div className="list-task-date">{dateCreated || 'N/A'}</div>
       <div className="list-task-content">
         {completed ? (
           <div className="completed-div">
@@ -28,9 +28,9 @@ function Task(props) {
           <div
             className="transparent-btn"
             onClick={() => {
-              setIsDeleteLoading(true);
-              setTask(props);
-              navigate(`${taskId}`);
+              setIsDeleteLoading(true)
+              setTask(props)
+              navigate(`${taskId}`)
             }}
           >
             <Edit />
@@ -38,16 +38,16 @@ function Task(props) {
           <div
             className="transparent-btn"
             onClick={() => {
-              setIsDeleteLoading(true);
+              setIsDeleteLoading(true)
               deleteTask(taskId)
                 .then((resp) => {
-                  setIsDeleteLoading(false);
-                  setGetAgain(!getAgain);
+                  setIsDeleteLoading(false)
+                  setGetAgain(!getAgain)
                 })
                 .catch((err) => {
-                  setIsDeleteError(true);
-                  setIsDeleteLoading(false);
-                });
+                  setIsDeleteError(true)
+                  setIsDeleteLoading(false)
+                })
             }}
           >
             <Delete />
@@ -55,6 +55,6 @@ function Task(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default Task;
+export default Task

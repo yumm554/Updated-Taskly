@@ -1,15 +1,46 @@
-import '../assets/css/addTask.css';
-import { useState } from 'react';
-import { createTask } from '../handlers/tasksHandler';
-import { useGlobalContext } from '../features/TaskContext';
-import { ReactComponent as Blocks } from '../assets/images/add-task-blocks.svg';
+import '../assets/css/addTask.css'
+import { useState } from 'react'
+import { createTask } from '../handlers/tasksHandler'
+import { useGlobalContext } from '../features/TaskContext'
+import { ReactComponent as Blocks } from '../assets/images/add-task-blocks.svg'
 
 function Form() {
-  const [isSuccess, setIsSucces] = useState(false);
-  const [name, setName] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const { user } = useGlobalContext();
+  const [isSuccess, setIsSucces] = useState(false)
+  const [name, setName] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const { user } = useGlobalContext()
+
+  const handleSubmit = (e) => {
+    const date = new Date()
+    const formattedDate = date
+      .toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      })
+      .replace(/\//g, ' ')
+
+    e.preventDefault()
+    setIsError(false)
+    setIsSucces(false)
+    setIsLoading(true)
+    createTask({
+      name: name,
+      username: user.username,
+      dateCreated: formattedDate,
+    })
+      .then((resp) => {
+        setIsSucces(true)
+        setIsLoading(false)
+      })
+      .catch((err) => {
+        setIsError(true)
+        setIsLoading(false)
+      })
+    setName('')
+  }
+
   return (
     <div className="addtask-main">
       {!user ? (
@@ -17,25 +48,7 @@ function Form() {
       ) : (
         <div className="addtask-form-container">
           <h1 className="add-task-heading">Add new task</h1>
-          <form
-            className="addtask-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setIsError(false);
-              setIsSucces(false);
-              setIsLoading(true);
-              createTask({ name: name, username: user.username })
-                .then((resp) => {
-                  setIsSucces(true);
-                  setIsLoading(false);
-                })
-                .catch((err) => {
-                  setIsError(true);
-                  setIsLoading(false);
-                });
-              setName('');
-            }}
-          >
+          <form className="addtask-form" onSubmit={handleSubmit}>
             <div className="task-name-input-container">
               <label htmlFor="task-name">- title </label>
               <br />
@@ -47,7 +60,7 @@ function Form() {
                 placeholder="Enter task name"
                 value={name}
                 onChange={(e) => {
-                  setName(e.target.value);
+                  setName(e.target.value)
                 }}
               />
             </div>
@@ -66,6 +79,6 @@ function Form() {
         </div>
       )}
     </div>
-  );
+  )
 }
-export default Form;
+export default Form
