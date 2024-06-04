@@ -1,0 +1,36 @@
+.addtask-main {
+  padding-top: 8%;
+  display: flex;
+  width: 100%;
+  max-height: 450px;
+  justify-content: center;
+}
+
+.addtask-form-container {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 40px 50px;
+  border-radius: 15px 15px 0 0;
+}
+
+.add-task-heading {
+  margin-top: 0;
+  color: #3e66fb;
+  font-size: 50px;
+  text-align: center;
+}
+
+.add-task-blocks {
+  width: fit-content;
+}
+.add-task-blocks.main {
+  margin: 62px 0 -62px auto;
+}
+
+.add-new-button {
+  margin: 20px auto 0 0;
+  padding: 12px 50px;
+}

@@ -9,9 +9,11 @@ function Layout() {
 
   return (
     <div className={`layout ${isHomePage ? 'layout-front' : 'layout-all'}`}>
-      <Header />
-      <div onClick={() => setMenu(false)}>
-        <Outlet />
+      <div className="layout-wrapper">
+        <Header />
+        <div className="layout-body" onClick={() => setMenu(false)}>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
