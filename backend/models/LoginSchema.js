@@ -1,15 +1,18 @@
 const { default: mongoose } = require('mongoose')
 
-const loginSchema = new mongoose.Schema({
+const LoginSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
-    required: [true, 'Email is required'],
-    unique: true,
+    required: true,
   },
   password: {
     type: String,
-    required: [true, 'Password is required'],
+    required: true,
   },
 })
 
-module.exports = mongoose.models.Login || mongoose.model('Login', loginSchema)
+module.exports = mongoose.model('Login', LoginSchema)

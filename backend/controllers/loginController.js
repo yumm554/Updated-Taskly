@@ -1,18 +1,16 @@
-const Login = require('../models/LoginSchema')
-const Task = require('../models/TaskSchema')
+const Login = require('../models/SignupSchema')
 
 const login = async (req, res) => {
   try {
-    const { username, password } = req.body
-    console.log({ username, password })
-    const find = await Login.findOne({ username })
-    console.log({ find })
+    const { email, password } = req.body
+    const find = await Login.findOne({ email })
+
     if (!find) {
-      res.status(400).json('No account exists with this username')
+      return res.status(400).json('No account exists with this username')
     }
-    const login = await Login.findOne({ username, password })
+    const login = await Login.findOne({ email, password })
     if (!login) {
-      res.status(400).json('Username or password does not match')
+      return res.status(400).json('Username or password does not match')
     }
     return res.status(200).json(login)
   } catch (err) {

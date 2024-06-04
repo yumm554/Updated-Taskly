@@ -6,7 +6,7 @@ import { useGlobalContext } from '../features/TaskContext'
 
 function Login() {
   const { user, setUser, loginBtn, setLoginBtn } = useGlobalContext()
-  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const [isLoading, setIsLoading] = useState(false)
@@ -30,7 +30,7 @@ function Login() {
               e.preventDefault()
               setIsError(false)
               setIsLoading(true)
-              login({ username: name, password })
+              login({ email, password })
                 .then((resp) => {
                   localStorage.setItem('user', JSON.stringify(resp?.data))
                   setUser(resp?.data)
@@ -42,21 +42,21 @@ function Login() {
                   setIsError(true)
                 })
 
-              setName('')
+              setEmail('')
               setPassword('')
             }}
           >
-            <label htmlFor="name"> Username -</label>
+            <label htmlFor="name"> Email -</label>
             <br />
             <input
               className="login-input name"
-              id="name"
-              name="name"
-              type="text"
-              placeholder="username"
-              value={name}
-              autoComplete="username"
-              onChange={(e) => setName(e.target.value)}
+              id="email"
+              name="email"
+              type="email"
+              placeholder="email"
+              value={email}
+              autoComplete="email"
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <br />
