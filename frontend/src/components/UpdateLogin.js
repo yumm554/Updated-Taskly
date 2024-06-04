@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
-import { updateLogin } from '../handlers/authHandler'
+import { updateProfile } from '../handlers/authHandler'
 import { useGlobalContext } from '../features/TaskContext'
 
 function UpdateLogin() {
   const { user, setUser } = useGlobalContext()
 
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [displayError, setDisplayError] = useState('An error has occured')
+  const [displayError, setDisplayError] = useState('An error has occurred')
   const [isSuccess, setIsSuccess] = useState(false)
 
   useEffect(() => {
     if (user) {
       setName(user?.username || '')
-      setPassword(user?.password || '')
+      setEmail(user?.email || '')
+      setPassword('')
     }
   }, [user])
 
@@ -31,14 +33,18 @@ function UpdateLogin() {
             className="login-form"
             onSubmit={(e) => {
               e.preventDefault()
+              if (!name && !password) {
+                return
+              }
               setIsError(false)
               setIsSuccess(false)
               setIsLoading(true)
-              updateLogin(user?.username, {
+              updateProfile(user?.username, {
                 username: name,
                 password: password,
               })
                 .then((resp) => {
+                  console.log({ resp })
                   localStorage.setItem('user', JSON.stringify(resp?.data))
                   setUser(resp?.data)
                   setIsSuccess(true)
@@ -64,6 +70,18 @@ function UpdateLogin() {
               onChange={(e) => setName(e.target.value)}
             />
             <br />
+            <label htmlFor="email"> Email -</label>
+            <br />
+            <input
+              className="login-input name"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="email"
+              disabled
+              value={email}
+            />
+            <br />
             <label htmlFor="password">Password -</label>
             <br />
             <input
@@ -81,10 +99,12 @@ function UpdateLogin() {
                 Update
               </button>
               {isLoading && <div className="loader"></div>}
-              {isSuccess && <p className="succes-added">Added, succesfullly</p>}
+              {isSuccess && (
+                <p className="success-added">Added, successfully</p>
+              )}
               {isError && (
                 <p className="error">
-                  {displayError || 'An error has occured'}
+                  {displayError || 'An error has occurred'}
                 </p>
               )}
             </div>
