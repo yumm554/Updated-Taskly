@@ -1,3 +1,5 @@
+const bcryptjs = require('bcryptjs')
+
 const Signup = require('../models/SignupSchema')
 
 const signup = async (req, res) => {
@@ -12,7 +14,15 @@ const signup = async (req, res) => {
       return res.status(400).json('User already exists')
     }
 
-    const newUser = await Signup.create({ username, email, password })
+    //hash password
+    const salt = await bcryptjs.genSalt(10)
+    const hashedPassword = await bcryptjs.hash(password, salt)
+
+    const newUser = await Signup.create({
+      username,
+      email,
+      password: hashedPassword,
+    })
     const savedUser = await newUser.save()
     console.log({ savedUser })
 

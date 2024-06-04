@@ -1,18 +1,21 @@
+const bcryptjs = require('bcryptjs')
+
 const Login = require('../models/SignupSchema')
 
 const login = async (req, res) => {
   try {
     const { email, password } = req.body
-    const find = await Login.findOne({ email })
+    const user = await Login.findOne({ email })
 
-    if (!find) {
-      return res.status(400).json('No account exists with this username')
+    if (!user) {
+      return res.status(400).json('User does not exist')
     }
-    const login = await Login.findOne({ email, password })
-    if (!login) {
-      return res.status(400).json('Username or password does not match')
+    const validPassword = await bcryptjs.compare(password, user.password)
+
+    if (!validPassword) {
+      return res.status(400).json('Incorrect Password!')
     }
-    return res.status(200).json(login)
+    return res.status(200).json(user)
   } catch (err) {
     console.log(err)
   }
