@@ -38,8 +38,12 @@
 
 .delete-login-button-container {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 .delete-login-button {
+  width: fit-content;
   background-color: #d12d2d;
   padding: 12px 50px;
   border-color: #d12d2d;

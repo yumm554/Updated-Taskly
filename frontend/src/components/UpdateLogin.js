@@ -15,6 +15,8 @@ function UpdateLogin() {
   const [isError, setIsError] = useState(false);
   const [displayError, setDisplayError] = useState('An error has occurred');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isDoP, setIsDoP] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +43,7 @@ function UpdateLogin() {
                 //   return;
                 // }
                 e.preventDefault();
+                setIsDoP(false);
                 setIsError(false);
                 setIsSuccess(false);
                 setIsLoading(true);
@@ -103,11 +106,11 @@ function UpdateLogin() {
                 <button className="update-login-button" type="submit">
                   Update
                 </button>
-                {isLoading && <div className="loader"></div>}
-                {isSuccess && (
+                {!isDoP && isLoading && <div className="loader"></div>}
+                {!isDoP && isSuccess && (
                   <p className="success-added">Update, successfully</p>
                 )}
-                {isError && (
+                {!isDoP && isError && (
                   <p className="error">
                     {displayError || 'An error has occurred'}
                   </p>
@@ -118,7 +121,45 @@ function UpdateLogin() {
           <div className="delete-profile-container">
             <h2 class="basic-details-heading">Delete Profile</h2>
             <div className="delete-login-button-container">
-              <button className="delete-login-button">Deelete Account</button>
+              <p>
+                Delete your profile and all your tasks. This is irreversible.
+              </p>
+              <div className="signup-loading-error-div">
+                <button
+                  className="delete-login-button"
+                  onClick={(e) => {
+                    setIsDoP(true);
+                    setIsError(false);
+                    setIsSuccess(false);
+                    setIsLoading(true);
+                    updateProfile(user?.email)
+                      .then((resp) => {
+                        setIsSuccess(true);
+                        setIsLoading(false);
+                        localStorage.clear();
+                        setUser(null);
+                        navigate('/login');
+                      })
+                      .catch((err) => {
+                        console.log('err: ', err);
+                        setDisplayError(err?.response?.data);
+                        setIsLoading(false);
+                        setIsError(true);
+                      });
+                  }}
+                >
+                  Deelete Account
+                </button>
+                {isDoP && isLoading && <div className="loader"></div>}
+                {isDoP && isSuccess && (
+                  <p className="success-added">Deleted, successfully</p>
+                )}
+                {isDoP && isError && (
+                  <p className="error">
+                    {displayError || 'An error has occurred'}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>

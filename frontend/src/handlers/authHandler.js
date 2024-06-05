@@ -14,3 +14,7 @@ export const updateProfile = async (email, data) => {
     data
   );
 };
+
+export const deleteProfile = async (email) => {
+  return await axios.get(`http://localhost:3001/api/v1/deleteProfile/${email}`);
+};
