@@ -1,7 +1,11 @@
 const { default: mongoose } = require('mongoose')
 
-const UpdateProfileSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   username: {
+    type: String,
+    required: true,
+  },
+  email: {
     type: String,
     required: true,
   },
@@ -11,4 +15,4 @@ const UpdateProfileSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model('UpdateProfile', UpdateProfileSchema)
+module.exports = mongoose.model('User', UserSchema)

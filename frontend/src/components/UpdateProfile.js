@@ -1,31 +1,31 @@
-import '../assets/css/updateLogin.css';
-import { useEffect, useState } from 'react';
-import { updateProfile } from '../handlers/authHandler';
-import { useGlobalContext } from '../features/TaskContext';
-import { useNavigate } from 'react-router-dom';
+import '../assets/css/updateLogin.css'
+import { useEffect, useState } from 'react'
+import { updateProfile, deleteProfile } from '../handlers/authHandler'
+import { useGlobalContext } from '../features/TaskContext'
+import { useNavigate } from 'react-router-dom'
 
-function UpdateLogin() {
-  const { user, setUser } = useGlobalContext();
+function UpdateProfile() {
+  const { user, setUser } = useGlobalContext()
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [displayError, setDisplayError] = useState('An error has occurred');
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isDoP, setIsDoP] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [displayError, setDisplayError] = useState('An error has occurred')
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [isDoP, setIsDoP] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user) {
-      setName(user?.username || '');
-      setEmail(user?.email || '');
-      setPassword('');
+      setName(user?.username || '')
+      setEmail(user?.email || '')
+      setPassword('')
     }
-  }, [user]);
+  }, [user])
 
   return (
     <div>
@@ -42,28 +42,28 @@ function UpdateLogin() {
                 //   e.preventDefault();
                 //   return;
                 // }
-                e.preventDefault();
-                setIsDoP(false);
-                setIsError(false);
-                setIsSuccess(false);
-                setIsLoading(true);
+                e.preventDefault()
+                setIsDoP(false)
+                setIsError(false)
+                setIsSuccess(false)
+                setIsLoading(true)
                 updateProfile(user?.email, {
                   username: name,
                   password: password,
                 })
                   .then((resp) => {
-                    localStorage.setItem('user', JSON.stringify(resp?.data));
-                    setUser(resp?.data);
-                    setIsSuccess(true);
-                    setIsLoading(false);
-                    navigate(`/${resp?.data?.username}`);
+                    localStorage.setItem('user', JSON.stringify(resp?.data))
+                    setUser(resp?.data)
+                    setIsSuccess(true)
+                    setIsLoading(false)
+                    navigate(`/${resp?.data?.username}`)
                   })
                   .catch((err) => {
-                    console.log('err: ', err);
-                    setDisplayError(err?.response?.data);
-                    setIsLoading(false);
-                    setIsError(true);
-                  });
+                    console.log('err: ', err)
+                    setDisplayError(err?.response?.data)
+                    setIsLoading(false)
+                    setIsError(true)
+                  })
               }}
             >
               <label htmlFor="name"> Username -</label>
@@ -128,31 +128,36 @@ function UpdateLogin() {
                 <button
                   className="delete-login-button"
                   onClick={(e) => {
-                    setIsDoP(true);
-                    setIsError(false);
-                    setIsSuccess(false);
-                    setIsLoading(true);
-                    updateProfile(user?.email)
+                    setIsDoP(true)
+                    setIsError(false)
+                    setIsSuccess(false)
+                    setIsLoading(true)
+                    deleteProfile(user?._id)
                       .then((resp) => {
-                        setIsSuccess(true);
-                        setIsLoading(false);
-                        localStorage.clear();
-                        setUser(null);
-                        navigate('/login');
+                        if (resp.data.success) {
+                          setIsSuccess(true)
+                          localStorage.clear()
+                          setUser(null)
+                          navigate('/login')
+                        } else {
+                          setIsError(true)
+                          setDisplayError(resp.data?.message)
+                        }
+                        setIsLoading(false)
                       })
                       .catch((err) => {
-                        console.log('err: ', err);
-                        setDisplayError(err?.response?.data);
-                        setIsLoading(false);
-                        setIsError(true);
-                      });
+                        console.log('err: ', err)
+                        setDisplayError(err?.response?.data)
+                        setIsLoading(false)
+                        setIsError(true)
+                      })
                   }}
                 >
-                  Deelete Account
+                  Delete Account
                 </button>
                 {isDoP && isLoading && <div className="loader"></div>}
                 {isDoP && isSuccess && (
-                  <p className="success-added">Deleted, successfully</p>
+                  <p className="success-added">Profile Deleted, Successfully</p>
                 )}
                 {isDoP && isError && (
                   <p className="error">
@@ -165,6 +170,6 @@ function UpdateLogin() {
         </div>
       )}
     </div>
-  );
+  )
 }
-export default UpdateLogin;
+export default UpdateProfile

@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
-import '../assets/css/welcome.css';
-import { ReactComponent as ChevronRight } from '../assets/images/chevron-right.svg';
-import { useGlobalContext } from '../features/TaskContext';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import '../assets/css/welcome.css'
+import { ReactComponent as ChevronRight } from '../assets/images/chevron-right.svg'
+import { useGlobalContext } from '../features/TaskContext'
+import { useNavigate } from 'react-router-dom'
 
 function Welcome() {
-  const { user } = useGlobalContext();
-  const navigate = useNavigate();
+  const { user } = useGlobalContext()
+  const navigate = useNavigate()
+  console.log('in welcome', { user })
 
   return (
     <div className="welcome-div">
@@ -17,7 +18,7 @@ function Welcome() {
           </h1>
           <p className="body-main-para">
             A Task management app for real time users with CRUD operations and
-            login signup feautures.
+            login signup features.
           </p>
         </div>
         <div className="body-main-buttons">
@@ -36,6 +37,6 @@ function Welcome() {
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default Welcome;
+export default Welcome

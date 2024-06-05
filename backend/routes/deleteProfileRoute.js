@@ -1,7 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const { deleteProfile } = require('../controllers/deleteProfileController');
+const express = require('express')
+const { deleteProfile } = require('../controllers/deleteProfileController')
 
-router.route('/:email').get(deleteProfile);
+const router = express.Router()
 
-module.exports = router;
+router.route('/:id').delete(deleteProfile)
+
+module.exports = router

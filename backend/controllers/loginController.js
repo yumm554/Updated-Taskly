@@ -1,11 +1,11 @@
 const bcryptjs = require('bcryptjs')
 
-const Login = require('../models/SignupSchema')
+const User = require('../models/SignupSchema')
 
 const login = async (req, res) => {
   try {
     const { email, password } = req.body
-    const user = await Login.findOne({ email })
+    const user = await User.findOne({ email })
 
     if (!user) {
       return res.status(400).json('User does not exist')
