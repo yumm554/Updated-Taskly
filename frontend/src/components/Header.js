@@ -15,7 +15,7 @@ function Header() {
   }, [navigate]);
 
   return (
-    <div>
+    <div className={loginBtn ? 'layout-absolute-header' : 'layout-header'}>
       <header className="task-manager-header">
         <div className="header-main">
           <Link to="/">
@@ -45,7 +45,12 @@ function Header() {
           ) : (
             <div>
               {loginBtn ? (
-                ''
+                <Link
+                  to="https://github.com/yumm554/Taskly-MERN-App"
+                  target="_blank"
+                >
+                  <button className="learn-more-button">Learn more</button>
+                </Link>
               ) : (
                 <button
                   className="header-button"

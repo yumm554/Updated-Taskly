@@ -17,7 +17,6 @@ code {
 }
 
 .layout {
-  padding: 10px 30px 0 30px;
   overflow: hidden;
 }
 .layout-front {
@@ -35,14 +34,21 @@ code {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-}
-.layout-all .layout-wrapper {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+.layout-all .layout-wrapper {
+  min-height: 100vh;
+}
 .layout-front .layout-wrapper {
-  height: 100vh;
+  min-height: 100vh;
+}
+/* .layout-front .layout-body {
+  position: absolute;
+  top: 0;
+} */
+.layout-front .layout-body {
+  display: flex;
 }
 .layout-body {
   flex: 1;
@@ -104,27 +110,6 @@ label {
 }
 
 /*login*/
-.login-main-heading {
-  text-align: center;
-  font-size: 50px;
-  margin: 15px 0 30px 0;
-}
-
-.login-input {
-  width: -webkit-fill-available;
-}
-
-.login-button {
-  margin: 20px 0;
-}
-
-.signup-reflink {
-  text-decoration: underline;
-  background-color: transparent;
-  padding: 0;
-  color: #1f1338;
-  margin-left: 10px;
-}
 
 /*signup*/
 .signup-loading-error-div {

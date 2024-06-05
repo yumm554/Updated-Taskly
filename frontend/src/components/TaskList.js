@@ -22,7 +22,7 @@ function TaskList() {
 
   useEffect(() => {
     if (user)
-      accessAllTasks(user?.username)
+      accessAllTasks(user?.email)
         .then((resp) => {
           setTaskData(resp?.sort((a, b) => a.completed - b.completed));
           setIsLoading(false);

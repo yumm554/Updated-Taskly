@@ -5,7 +5,7 @@ import { ReactComponent as Settings } from '../assets/images/settings.svg';
 import { ReactComponent as Logout } from '../assets/images/logout.svg';
 
 function Menu() {
-  const { user: currentUser, setUser } = useGlobalContext();
+  const { user, setUser } = useGlobalContext();
   const navigate = useNavigate();
   return (
     <div className="menu">
@@ -15,7 +15,7 @@ function Menu() {
         <li>
           <a
             onClick={() => {
-              navigate(`/profile`);
+              navigate(`/${user?.username}`);
             }}
             className="header-nav-link"
           >

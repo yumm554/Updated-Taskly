@@ -1,0 +1,63 @@
+.signup-main-container {
+  min-height: 100vh;
+  display: flex;
+}
+.signup-form-container {
+  flex: 1.5;
+  padding: 8% 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-main-heading {
+  margin-top: 0;
+  color: #000;
+  font-size: 21px;
+  text-align: center;
+}
+.signup-input {
+  width: -webkit-fill-available;
+}
+.signup-button {
+  margin: 20px auto 20px 0;
+  padding: 12px 50px;
+}
+
+.no-account-para {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
+.login-reflink {
+  text-decoration: underline;
+  background-color: transparent;
+  border: 0px solid;
+  padding: 0;
+  margin-left: 10px;
+  color: #3e66fb;
+}
+
+.signup-banner-container {
+  flex: 2;
+  width: 50%;
+  background: url('data:image/svg+xml,<svg width="601" height="720" viewBox="0 0 601 720" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_109_21)"><rect x="565.767" y="426.166" width="388.378" height="364.478" rx="15" transform="rotate(167.277 565.767 426.166)" fill="%233E66FB"/><rect x="565.169" y="425.788" width="387.378" height="363.478" rx="14.5" transform="rotate(167.277 565.169 425.788)" stroke="white" stroke-opacity="0.12"/><rect x="521.429" y="520.207" width="388.378" height="364.478" rx="15" transform="rotate(167.277 521.429 520.207)" fill="%233E66FB"/><rect x="520.831" y="519.829" width="387.378" height="363.478" rx="14.5" transform="rotate(167.277 520.831 519.829)" stroke="white" stroke-opacity="0.12"/><rect x="506.111" y="692.804" width="388.378" height="364.478" rx="15" transform="rotate(167.277 506.111 692.804)" fill="%233E66FB"/><rect x="505.513" y="692.427" width="387.378" height="363.478" rx="14.5" transform="rotate(167.277 505.513 692.427)" stroke="white" stroke-opacity="0.12"/><g filter="url(%23filter0_d_109_21)"><rect x="353.441" y="-58" width="294.799" height="276.658" rx="15" transform="rotate(15.6879 353.441 -58)" fill="%233E66FB"/></g></g><defs><filter id="filter0_d_109_21" x="250.126" y="-78.5066" width="405.638" height="393.078" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dx="-5" dy="3"/><feGaussianBlur stdDeviation="13.5"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_109_21"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_109_21" result="shape"/></filter><clipPath id="clip0_109_21"><rect width="601" height="720" fill="white"/></clipPath></defs></svg>');
+  background-color: #3e66fb;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 8% 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signup-banner-content {
+  font-size: 55px;
+  width: 350px;
+  line-height: 1.4;
+}
+
+.signup-banner-para {
+  width: 500px;
+}

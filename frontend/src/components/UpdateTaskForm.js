@@ -24,7 +24,7 @@ function UpdateTaskForm() {
         navigate('/login')
       ) : (
         <div className="updatetask-form-container">
-          <h1 className="update-task-heading">Task</h1>
+          <h2 className="update-task-heading">Task</h2>
           {isError ? (
             <p className="error">An error has occured</p>
           ) : (

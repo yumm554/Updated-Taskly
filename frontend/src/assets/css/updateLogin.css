@@ -1,0 +1,46 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 5% 30px 0 30px;
+}
+
+.basic-details-container,
+.delete-profile-container {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 40px 50px;
+  display: flex;
+  align-items: start;
+  gap: 20%;
+  justify-content: center;
+}
+
+.update-login-button {
+  width: fit-content;
+  margin: 20px 0 20px 0;
+  padding: 12px 50px;
+}
+
+.basic-details-heading {
+  margin-top: 0;
+  color: #000;
+  font-size: 21px;
+}
+.update-login-form {
+  flex: 1;
+}
+
+.update-login-form input {
+  width: -webkit-fill-available;
+}
+
+.delete-login-button-container {
+  flex: 1;
+}
+.delete-login-button {
+  background-color: #d12d2d;
+  padding: 12px 50px;
+  border-color: #d12d2d;
+}

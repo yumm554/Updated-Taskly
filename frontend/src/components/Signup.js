@@ -1,136 +1,153 @@
-import { useState } from 'react'
-import { User } from '../assets/icons/icons'
-import { useNavigate } from 'react-router-dom'
-import { signup } from '../handlers/authHandler'
-import { useGlobalContext } from '../features/TaskContext'
+import '../assets/css/signup.css';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { signup } from '../handlers/authHandler';
+import { useGlobalContext } from '../features/TaskContext';
 
 function Signup() {
-  const { user } = useGlobalContext()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const { user, setUser, loginBtn, setLoginBtn } = useGlobalContext();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [displayError, setDisplayError] = useState('An error has occurred')
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [displaySuccess, setDisplaySuccess] = useState('Success')
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [displayError, setDisplayError] = useState('An error has occurred');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [displaySuccess, setDisplaySuccess] = useState('Success');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!loginBtn) setLoginBtn(true);
+  }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // setIsSuccess(false)
     // setIsError(false)
-    setIsLoading(true)
+    setIsLoading(true);
     if (password === confirmPassword) {
       signup({ username: name, email, password })
         .then((resp) => {
-          console.log({ resp })
-          setIsLoading(false)
-          setIsSuccess(true)
-          setDisplaySuccess(resp.data)
+          setIsLoading(false);
+          setIsSuccess(true);
+          setDisplaySuccess(resp.data);
+          localStorage.setItem('user', JSON.stringify(resp?.data));
+          setUser(resp?.data);
+          navigate('/');
         })
         .catch((err) => {
-          setDisplayError(err.response?.data)
-          setIsLoading(false)
-          setIsError(true)
-        })
+          setDisplayError(err.response?.data);
+          setIsLoading(false);
+          setIsError(true);
+          setName('');
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+        });
+    } else {
+      setDisplayError('Password does not mach');
+      setIsLoading(false);
+      setPassword('');
+      setConfirmPassword('');
     }
-    setName('')
-    setPassword('')
-    setConfirmPassword('')
-  }
+  };
 
   return (
     <div>
       {user ? (
-        <p>You are already logged in</p>
+        navigate('/')
       ) : (
-        <div>
-          <h1 className="login-main-heading">Signup</h1>
-          <form className="login-form" onSubmit={handleSubmit}>
-            <label htmlFor="name">Username -</label>
-            <br />
-            <input
-              className="login-input name"
-              id="name"
-              name="name"
-              type="text"
-              placeholder="username"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            <br />
-            <label htmlFor="email">Email -</label>
-            <br />
-            <input
-              className="login-input name"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <br />
-            <label htmlFor="password">Password -</label>
-            <br />
-            <input
-              className="login-input password"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="create password"
-              autoComplete="new-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <br />
-            <label htmlFor="confirm-password">Confirm password -</label>
-            <br />
-            <input
-              className="login-input password"
-              id="confirm-password"
-              name="confirm-password"
-              type="password"
-              placeholder="confirm password"
-              autoComplete="current-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-            <br />
-            <div className="signup-loading-error-div">
-              <button className="login-button" type="submit">
-                Signup
-              </button>
-              {isLoading && <div className="loader"></div>}
-              {isError && <p className="error">{displayError}</p>}
-              {isSuccess && <p className="success-added">{displaySuccess}</p>}
+        <div className="signup-main-container">
+          <div className="signup-form-container">
+            <h1 className="signup-main-heading">Signup</h1>
+            <form className="signup-form" onSubmit={handleSubmit}>
+              <label htmlFor="name">Username -</label>
+              <br />
+              <input
+                className="signup-input name"
+                id="name"
+                name="name"
+                type="text"
+                placeholder="username"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <br />
+              <label htmlFor="email">Email -</label>
+              <br />
+              <input
+                className="signup-input name"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <br />
+              <label htmlFor="password">Password -</label>
+              <br />
+              <input
+                className="signup-input password"
+                id="password"
+                name="password"
+                type="password"
+                placeholder="create password"
+                autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <br />
+              <label htmlFor="confirm-password">Confirm password -</label>
+              <br />
+              <input
+                className="signup-input password"
+                id="confirm-password"
+                name="confirm-password"
+                type="password"
+                placeholder="confirm password"
+                autoComplete="current-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <br />
+              <div className="signup-loading-error-div">
+                <button className="signup-button" type="submit">
+                  Signup
+                </button>
+                {isLoading && <div className="loader"></div>}
+                {isError && <p className="error">{displayError}</p>}
+                {isSuccess && <p className="success-added">{displaySuccess}</p>}
+              </div>
+            </form>
+            <div className="no-account-container">
+              <p className="no-account-para">
+                Already have an account:
+                <Link to="/login">
+                  {setLoginBtn(true)}
+                  <div className="login-reflink">Login</div>
+                </Link>
+              </p>
             </div>
-          </form>
-          <div>
-            <p>
-              Already have an account:
-              <button
-                className="signup-reflink"
-                onClick={() => navigate('/login')}
-              >
-                Login
-              </button>
-            </p>
           </div>
-          <div>
-            <User />
+          <div className="signup-banner-container">
+            <h3 className="signup-banner-content">
+              A simple and user-friendly task management tool!
+            </h3>
+            <p className="signup-banner-para">
+              Monitor and organize your tasks, mark them as completed, remove
+              tasks, and make updates to existing tasks.
+            </p>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
-export default Signup
+export default Signup;

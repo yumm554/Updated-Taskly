@@ -9,7 +9,7 @@ const {
 const router = express.Router();
 
 router.route('/').post(createTask);
-router.route('/:username').get(getAllTask);
+router.route('/:email').get(getAllTask);
 
 router.route('/:id').get(getTask).patch(updateTask).delete(deleteTask);
 

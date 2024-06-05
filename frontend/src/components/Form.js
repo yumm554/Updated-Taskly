@@ -1,5 +1,6 @@
 import '../assets/css/addTask.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createTask } from '../handlers/tasksHandler';
 import { useGlobalContext } from '../features/TaskContext';
 import { ReactComponent as Blocks } from '../assets/images/add-task-blocks.svg';
@@ -10,7 +11,7 @@ function Form() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const { user } = useGlobalContext();
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     const date = new Date();
     const formattedDate = date
@@ -27,7 +28,7 @@ function Form() {
     setIsLoading(true);
     createTask({
       name: name,
-      username: user.username,
+      email: user.email,
       dateCreated: formattedDate,
     })
       .then((resp) => {
