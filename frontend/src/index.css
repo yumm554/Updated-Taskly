@@ -5,6 +5,8 @@ body {
   font-family: Poppins, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f9f9fb;
+  font-size: 15px;
 }
 
 a {
@@ -30,9 +32,17 @@ code {
   color: #000;
   background-color: #f9f9fb;
 }
+
+.layout-all.forms {
+  background: url('data:image/svg+xml,<svg width="1200" height="382" viewBox="0 0 1200 382" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_109_21)"><rect width="1200" height="382" fill="%233E66FB"/><rect x="347.861" y="579.312" width="388.378" height="364.478" rx="15" transform="rotate(-121.936 347.861 579.312)" fill="%233E66FB"/><rect x="348.021" y="578.623" width="387.378" height="363.478" rx="14.5" transform="rotate(-121.936 348.021 578.623)" stroke="white" stroke-opacity="0.12"/><rect x="244.467" y="568.392" width="388.378" height="364.478" rx="15" transform="rotate(-121.936 244.467 568.392)" fill="%233E66FB"/><rect x="244.627" y="567.703" width="387.378" height="363.478" rx="14.5" transform="rotate(-121.936 244.627 567.703)" stroke="white" stroke-opacity="0.12"/><rect x="76.4426" y="610.728" width="388.378" height="364.478" rx="15" transform="rotate(-121.936 76.4426 610.728)" fill="%233E66FB"/><rect x="76.6025" y="610.039" width="387.378" height="363.478" rx="14.5" transform="rotate(-121.936 76.6025 610.039)" stroke="white" stroke-opacity="0.12"/><g filter="url(%23filter0_d_109_21)"><rect x="990.808" y="145" width="294.799" height="276.658" rx="15" transform="rotate(15.6879 990.808 145)" fill="%233E66FB"/></g></g><defs><filter id="filter0_d_109_21" x="887.493" y="124.493" width="405.638" height="393.078" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/><feOffset dx="-5" dy="3"/><feGaussianBlur stdDeviation="13.5"/><feComposite in2="hardAlpha" operator="out"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"/><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_109_21"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_109_21" result="shape"/></filter><clipPath id="clip0_109_21"><rect width="1200" height="382" fill="white"/></clipPath></defs></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+
 .layout-wrapper {
   width: 100%;
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -43,34 +53,11 @@ code {
 .layout-front .layout-wrapper {
   min-height: 100vh;
 }
-/* .layout-front .layout-body {
-  position: absolute;
-  top: 0;
-} */
-.layout-front .layout-body {
-  display: flex;
-}
+
 .layout-body {
+  display: flex;
   flex: 1;
   position: relative;
-}
-
-@media screen and (max-width: 1160px) and (min-width: 799px) {
-}
-
-@media screen and (max-width: 798px) and (min-width: 500px) {
-}
-
-@media screen and (max-width: 499px) {
-  body {
-    width: 100%;
-    background-color: #fff;
-  }
-  #root {
-    margin: 0;
-    height: 100%;
-    border-radius: 0;
-  }
 }
 
 button {
@@ -79,7 +66,7 @@ button {
   padding: 15px 30px;
   border: 0 solid;
   color: #fff;
-  font-size: 14px;
+  font-size: 1em;
   border: 1px solid #000;
 }
 
@@ -100,31 +87,13 @@ textarea {
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
   border-radius: 7px;
   margin: 10px 0;
-  width: 300px;
+  width: -webkit-fill-available;
   font-family: Poppins, sans-serif;
 }
 
 label {
-  font-size: 12px;
+  font-size: 0.8em;
   font-weight: 600;
-}
-
-/*login*/
-
-/*signup*/
-.signup-loading-error-div {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  align-items: center;
-}
-
-/*tasks*/
-
-.user-details-div {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  align-items: center;
-  justify-content: space-between;
 }
 
 input:active,
@@ -133,13 +102,11 @@ input:focus {
   outline: 0 solid;
 }
 
-/* "/" page styles */
-
 .loader {
   margin: auto;
   border: 5px solid #eaf0f6;
   border-radius: 50%;
-  border-top: 5px solid #4346e9;
+  border-top: 5px solid #3e66fb;
   width: 20px;
   height: 20px;
   animation: spinner 0.5s linear infinite;
@@ -156,60 +123,19 @@ input:focus {
 
 .error {
   font-size: 12px;
-  color: #941414;
+  color: #d12d2d;
   text-align: center;
 }
 
-.completed-div {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  align-items: center;
-  grid-gap: 10px;
+.red-star {
+  color: #d12d2d;
 }
 
-.completed {
-  text-decoration: line-through;
+@media screen and (max-width: 1024px) and (min-width: 768px) {
 }
 
-.add-new-button-div.new-task {
-  position: fixed;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-}
-
-/*success error*/
-
-.succes-added {
-  color: #a3d6a3;
-  font-size: 12px;
-  text-align: center;
-}
-
-/*not found*/
-.not-found.first {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  align-items: center;
-  padding: 60px 0 30px 0;
-}
-
-.not-found-heading {
-  font-size: 100px;
-}
-
-.not-found-para {
-  font-size: 20px;
-}
-
-.fzf {
-  text-align: center;
-  margin: 0;
-  font-size: 100px;
-}
-
-.fzf-para {
-  text-align: center;
-  margin: 0;
-  margin-top: -20px;
+@media screen and (max-width: 767px) {
+  button {
+    padding: 15px 20px;
+  }
 }

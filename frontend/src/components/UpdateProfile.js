@@ -1,34 +1,34 @@
-import '../assets/css/updateLogin.css'
-import { useEffect, useState } from 'react'
-import { updateProfile, deleteProfile } from '../handlers/authHandler'
-import { useGlobalContext } from '../features/TaskContext'
-import { useNavigate } from 'react-router-dom'
+import '../assets/css/updateLogin.css';
+import { useEffect, useState } from 'react';
+import { updateProfile, deleteProfile } from '../handlers/authHandler';
+import { useGlobalContext } from '../features/TaskContext';
+import { useNavigate } from 'react-router-dom';
 
 function UpdateProfile() {
-  const { user, setUser } = useGlobalContext()
+  const { user, setUser } = useGlobalContext();
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [displayError, setDisplayError] = useState('An error has occurred')
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isDoP, setIsDoP] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [displayError, setDisplayError] = useState('An error has occurred');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isDoP, setIsDoP] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      setName(user?.username || '')
-      setEmail(user?.email || '')
-      setPassword('')
+      setName(user?.username || '');
+      setEmail(user?.email || '');
+      setPassword('');
     }
-  }, [user])
+  }, [user]);
 
   return (
-    <div>
+    <div className="update-login-main-container">
       {!user ? (
         navigate('/login')
       ) : (
@@ -42,31 +42,33 @@ function UpdateProfile() {
                 //   e.preventDefault();
                 //   return;
                 // }
-                e.preventDefault()
-                setIsDoP(false)
-                setIsError(false)
-                setIsSuccess(false)
-                setIsLoading(true)
+                e.preventDefault();
+                setIsDoP(false);
+                setIsError(false);
+                setIsSuccess(false);
+                setIsLoading(true);
                 updateProfile(user?.email, {
                   username: name,
                   password: password,
                 })
                   .then((resp) => {
-                    localStorage.setItem('user', JSON.stringify(resp?.data))
-                    setUser(resp?.data)
-                    setIsSuccess(true)
-                    setIsLoading(false)
-                    navigate(`/${resp?.data?.username}`)
+                    localStorage.setItem('user', JSON.stringify(resp?.data));
+                    setUser(resp?.data);
+                    setIsSuccess(true);
+                    setIsLoading(false);
+                    navigate(`/${resp?.data?.username}`);
                   })
                   .catch((err) => {
-                    console.log('err: ', err)
-                    setDisplayError(err?.response?.data)
-                    setIsLoading(false)
-                    setIsError(true)
-                  })
+                    console.log('err: ', err);
+                    setDisplayError(err?.response?.data);
+                    setIsLoading(false);
+                    setIsError(true);
+                  });
               }}
             >
-              <label htmlFor="name"> Username -</label>
+              <label htmlFor="name">
+                - username <span className="red-star">*</span>
+              </label>
               <br />
               <input
                 className="update-login-input name"
@@ -78,7 +80,7 @@ function UpdateProfile() {
                 onChange={(e) => setName(e.target.value)}
               />
               <br />
-              <label htmlFor="email"> Email -</label>
+              <label htmlFor="email">- email </label>
               <br />
               <input
                 className="update-login-input name"
@@ -90,7 +92,7 @@ function UpdateProfile() {
                 value={email}
               />
               <br />
-              <label htmlFor="password">Password -</label>
+              <label htmlFor="password">- password</label>
               <br />
               <input
                 className="update-login-input name"
@@ -121,36 +123,36 @@ function UpdateProfile() {
           <div className="delete-profile-container">
             <h2 class="basic-details-heading">Delete Profile</h2>
             <div className="delete-login-button-container">
-              <p>
+              <p className="delete-login-para">
                 Delete your profile and all your tasks. This is irreversible.
               </p>
               <div className="signup-loading-error-div">
                 <button
                   className="delete-login-button"
                   onClick={(e) => {
-                    setIsDoP(true)
-                    setIsError(false)
-                    setIsSuccess(false)
-                    setIsLoading(true)
+                    setIsDoP(true);
+                    setIsError(false);
+                    setIsSuccess(false);
+                    setIsLoading(true);
                     deleteProfile(user?._id)
                       .then((resp) => {
                         if (resp.data.success) {
-                          setIsSuccess(true)
-                          localStorage.clear()
-                          setUser(null)
-                          navigate('/login')
+                          setIsSuccess(true);
+                          localStorage.clear();
+                          setUser(null);
+                          navigate('/login');
                         } else {
-                          setIsError(true)
-                          setDisplayError(resp.data?.message)
+                          setIsError(true);
+                          setDisplayError(resp.data?.message);
                         }
-                        setIsLoading(false)
+                        setIsLoading(false);
                       })
                       .catch((err) => {
-                        console.log('err: ', err)
-                        setDisplayError(err?.response?.data)
-                        setIsLoading(false)
-                        setIsError(true)
-                      })
+                        console.log('err: ', err);
+                        setDisplayError(err?.response?.data);
+                        setIsLoading(false);
+                        setIsError(true);
+                      });
                   }}
                 >
                   Delete Account
@@ -170,6 +172,6 @@ function UpdateProfile() {
         </div>
       )}
     </div>
-  )
+  );
 }
-export default UpdateProfile
+export default UpdateProfile;

@@ -1,4 +1,4 @@
-import { FZF } from '../assets/icons/icons';
+import '../assets/css/notFound.css';
 import { useNavigate } from 'react-router-dom';
 
 function NotFound() {
@@ -15,7 +15,6 @@ function NotFound() {
       <div>
         <h1 className="fzf">404</h1>
         <p className="fzf-para">Page not found</p>
-        <FZF />
       </div>
     </div>
   );

@@ -51,15 +51,19 @@ function Form() {
           <h1 className="add-task-heading">Add new task</h1>
           <form className="addtask-form" onSubmit={handleSubmit}>
             <div className="task-name-input-container">
-              <label htmlFor="task-name">- title </label>
+              <label htmlFor="task-name">
+                - title <span className="red-star">*</span>
+              </label>
               <br />
-              <input
+              <textarea
+                required
                 className="task-name-input"
                 id="task-name"
                 name="task-name"
                 type="text"
                 placeholder="Enter task name"
                 value={name}
+                rows={4}
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
@@ -70,7 +74,9 @@ function Form() {
                 add
               </button>
               {isLoading && <div className="loader"></div>}
-              {isSuccess && <p className="succes-added">Added, succesfullly</p>}
+              {isSuccess && (
+                <p className="success-added">Added, succesfullly</p>
+              )}
               {isError && <p className="error">An error has occured</p>}
             </div>
           </form>

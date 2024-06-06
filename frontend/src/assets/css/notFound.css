@@ -1,0 +1,26 @@
+.not-found.first {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  padding: 60px 0 30px 0;
+}
+
+.not-found-heading {
+  font-size: 100px;
+}
+
+.not-found-para {
+  font-size: 20px;
+}
+
+.fzf {
+  text-align: center;
+  margin: 0;
+  font-size: 100px;
+}
+
+.fzf-para {
+  text-align: center;
+  margin: 0;
+  margin-top: -20px;
+}

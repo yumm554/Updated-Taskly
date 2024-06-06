@@ -18,7 +18,7 @@ function Login() {
     if (!loginBtn) setLoginBtn(true);
   }, []);
   return (
-    <div>
+    <div className="login-user-main-container">
       {user ? (
         navigate('/')
       ) : (
@@ -50,7 +50,7 @@ function Login() {
                   });
               }}
             >
-              <label htmlFor="name"> Email -</label>
+              <label htmlFor="name">- email</label>
               <br />
               <input
                 className="login-input name"
@@ -64,7 +64,7 @@ function Login() {
                 required
               />
               <br />
-              <label htmlFor="password">Password -</label>
+              <label htmlFor="password">- password </label>
               <br />
               <input
                 className="login-input name"
@@ -78,7 +78,7 @@ function Login() {
                 required
               />
               <br />
-              <div className="signup-loading-error-div">
+              <div className="login-loading-error-div">
                 <button className="login-button" type="submit">
                   Login
                 </button>

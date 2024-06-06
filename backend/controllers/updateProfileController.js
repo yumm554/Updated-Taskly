@@ -5,9 +5,14 @@ const User = require('../models/SignupSchema')
 
 const updateProfile = async (req, res) => {
   try {
+<<<<<<< Updated upstream
     const { email: email } = req.params
     const { username, password } = req.body
     console.log({ email: email, username: username, password: password })
+=======
+    const { email: email } = req.params;
+    const { username, password } = req.body;
+>>>>>>> Stashed changes
 
     // Find the existing profile
     // const profile = await UpdateProfile.findOne({ username: name })

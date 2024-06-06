@@ -7,6 +7,7 @@
 }
 
 .updatetask-form-container {
+  width: 60%;
   position: relative;
   overflow: hidden;
   margin: 0 auto;
@@ -18,7 +19,7 @@
 .update-task-heading {
   margin-top: 0;
   color: #000;
-  font-size: 21px;
+  font-size: 1.4em;
   text-align: center;
 }
 
@@ -27,6 +28,11 @@
 }
 .update-task-blocks.main {
   margin: 0px 0 -55px auto;
+}
+.update-new-button-div {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
 }
 
 .update-new-button {
@@ -43,4 +49,18 @@
 .task-completed-input {
   width: fit-content;
   box-shadow: none;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+}
+
+@media screen and (max-width: 767px) {
+  .updatetask-form-container {
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .update-task-blocks.main {
+    margin: 24px 0 -84px auto;
+  }
 }

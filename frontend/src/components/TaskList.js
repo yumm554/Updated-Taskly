@@ -40,7 +40,7 @@ function TaskList() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="task-list-main-container">
       {!user ? (
         navigate('/login')
       ) : (
@@ -57,7 +57,7 @@ function TaskList() {
           </div>
           <div className="task-total-main">
             <p className="tasks-todo">
-              Todo <span>*</span>
+              Todo <span className="red-star">*</span>
             </p>
             <b className="task-count">
               {counter}/{taskData?.length || 0} tasks

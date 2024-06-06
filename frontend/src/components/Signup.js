@@ -53,7 +53,7 @@ function Signup() {
   }
 
   return (
-    <div>
+    <div className="signup-user-main-container">
       {user ? (
         navigate('/')
       ) : (
@@ -61,7 +61,7 @@ function Signup() {
           <div className="signup-form-container">
             <h1 className="signup-main-heading">Signup</h1>
             <form className="signup-form" onSubmit={handleSubmit}>
-              <label htmlFor="name">Username -</label>
+              <label htmlFor="name">- username</label>
               <br />
               <input
                 className="signup-input name"
@@ -74,7 +74,7 @@ function Signup() {
                 required
               />
               <br />
-              <label htmlFor="email">Email -</label>
+              <label htmlFor="email">- email </label>
               <br />
               <input
                 className="signup-input name"
@@ -87,7 +87,7 @@ function Signup() {
                 required
               />
               <br />
-              <label htmlFor="password">Password -</label>
+              <label htmlFor="password">- password</label>
               <br />
               <input
                 className="signup-input password"
@@ -101,7 +101,7 @@ function Signup() {
                 required
               />
               <br />
-              <label htmlFor="confirm-password">Confirm password -</label>
+              <label htmlFor="confirm-password">- confirm password</label>
               <br />
               <input
                 className="signup-input password"

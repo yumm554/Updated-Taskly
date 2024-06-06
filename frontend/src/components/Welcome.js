@@ -1,13 +1,12 @@
-import { Link } from 'react-router-dom'
-import '../assets/css/welcome.css'
-import { ReactComponent as ChevronRight } from '../assets/images/chevron-right.svg'
-import { useGlobalContext } from '../features/TaskContext'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import '../assets/css/welcome.css';
+import { ReactComponent as ChevronRight } from '../assets/images/chevron-right.svg';
+import { useGlobalContext } from '../features/TaskContext';
+import { useNavigate } from 'react-router-dom';
 
 function Welcome() {
-  const { user } = useGlobalContext()
-  const navigate = useNavigate()
-  console.log('in welcome', { user })
+  const { user } = useGlobalContext();
+  const navigate = useNavigate();
 
   return (
     <div className="welcome-div">
@@ -32,11 +31,9 @@ function Welcome() {
             <button className="transparent-btn">Learn more</button>
           </Link>
         </div>
-        <div className="body-main-image">
-          <img src={require('../assets/images/main.png')} />
-        </div>
+        <div className="body-main-image"></div>
       </div>
     </div>
-  )
+  );
 }
-export default Welcome
+export default Welcome;

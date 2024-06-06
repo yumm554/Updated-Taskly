@@ -6,6 +6,7 @@
 }
 
 .addtask-form-container {
+  width: 60%;
   position: relative;
   overflow: hidden;
   margin: 0 auto;
@@ -17,8 +18,9 @@
 .add-task-heading {
   margin-top: 0;
   color: #3e66fb;
-  font-size: 50px;
+  font-size: 4em;
   text-align: center;
+  font-weight: 500;
 }
 
 .add-task-blocks {
@@ -29,6 +31,28 @@
 }
 
 .add-new-button {
-  margin: 20px auto 0 0;
+  margin: 20px auto 20px 0;
   padding: 12px 50px;
+}
+
+.add-new-button-div {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+}
+
+@media screen and (max-width: 767px) {
+  .addtask-form-container {
+    width: 100%;
+    padding: 40px 20px;
+  }
+  .add-task-heading {
+    font-size: 2.5em;
+  }
+  .add-task-blocks.main {
+    margin: 84px 0 -84px auto;
+  }
 }

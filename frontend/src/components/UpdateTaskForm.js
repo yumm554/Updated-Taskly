@@ -57,7 +57,9 @@ function UpdateTaskForm() {
                   disabled
                 />
                 <br />
-                <label htmlFor="task-name">- title</label>
+                <label htmlFor="task-name">
+                  - title <span className="red-star">*</span>
+                </label>
                 <br />
                 <textarea
                   className="task-name-input"
@@ -82,7 +84,7 @@ function UpdateTaskForm() {
                       setCompleted(!completed);
                     }}
                   />
-                  <label htmlFor="task-completed">Completed -</label>
+                  <label htmlFor="task-completed">- completed</label>
                 </div>
                 <div className="update-new-button-div form">
                   <button className="update-new-button form" type="submit">
@@ -90,7 +92,7 @@ function UpdateTaskForm() {
                   </button>
                   {isLoading && <div className="loader"></div>}
                   {isSuccess && (
-                    <p className="succes-added">Saved, succesfullly</p>
+                    <p className="success-added">Saved, succesfullly</p>
                   )}
                   {isError && <p className="error">An error has occured</p>}
                 </div>
