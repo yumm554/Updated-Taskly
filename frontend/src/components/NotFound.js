@@ -1,8 +1,8 @@
-import '../assets/css/notFound.css';
-import { useNavigate } from 'react-router-dom';
+import '../assets/css/notFound.css'
+import { useNavigate } from 'react-router-dom'
 
 function NotFound() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
     <div className="not-found first">
       <div>
@@ -10,13 +10,13 @@ function NotFound() {
         <p className="not-found-para">
           The page you are looking for doesn't exist.
         </p>
-        <button onClick={navigate('/')}>Go back</button>
+        <button onClick={() => navigate('/')}>Go back</button>
       </div>
       <div>
         <h1 className="fzf">404</h1>
         <p className="fzf-para">Page not found</p>
       </div>
     </div>
-  );
+  )
 }
-export default NotFound;
+export default NotFound
