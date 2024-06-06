@@ -38,10 +38,6 @@ function UpdateProfile() {
             <form
               className="update-login-form"
               onSubmit={(e) => {
-                // if (!name && !password) {
-                //   e.preventDefault();
-                //   return;
-                // }
                 e.preventDefault();
                 setIsDoP(false);
                 setIsError(false);
@@ -72,6 +68,7 @@ function UpdateProfile() {
               <br />
               <input
                 className="update-login-input name"
+                required
                 id="name"
                 name="name"
                 type="text"

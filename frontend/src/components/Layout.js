@@ -11,7 +11,6 @@ function Layout() {
     location.pathname === '/tasks' ||
     location.pathname === '/login' ||
     location.pathname === '/signup';
-  console.log(taskUrl);
   useEffect(() => {
     window.addEventListener('click', function (e) {
       if (!e.target.closest('.nav-container')) setMenu(false);

@@ -1,26 +1,41 @@
+.not-found-container {
+  width: 100%;
+  padding: 5% 30px 0 30px;
+}
+
 .not-found.first {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  align-items: center;
-  padding: 60px 0 30px 0;
-}
-
-.not-found-heading {
-  font-size: 100px;
-}
-
-.not-found-para {
-  font-size: 20px;
+  background-color: #fff;
+  display: flex;
+  border-radius: 15px;
+  padding: 8% 50px;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .fzf {
   text-align: center;
   margin: 0;
-  font-size: 100px;
+  font-size: 7em;
+  color: #3e66fb;
+  font-weight: 500;
 }
 
 .fzf-para {
   text-align: center;
   margin: 0;
   margin-top: -20px;
+}
+
+.fzf-button {
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+}
+
+@media screen and (max-width: 767px) {
+  .not-found.first {
+    padding: 40px 20px;
+  }
 }

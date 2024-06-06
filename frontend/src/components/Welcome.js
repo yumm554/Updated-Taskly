@@ -13,7 +13,7 @@ function Welcome() {
       <div className="body-main">
         <div className="body-content">
           <h1 className="body-main-heading">
-            {user ? `Hello ${user?.username}!` : 'Manage Tasks Taskly'}
+            {user ? `Hello ${user?.username}!` : 'Manage Tasks Using Taskly'}
           </h1>
           <p className="body-main-para">
             A Task management app for real time users with CRUD operations and
