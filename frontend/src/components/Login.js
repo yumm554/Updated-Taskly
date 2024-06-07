@@ -56,6 +56,7 @@ function Login() {
               <br />
               <input
                 className="login-input name"
+                data-testid="email-input-field"
                 id="email"
                 name="email"
                 type="email"
@@ -70,6 +71,7 @@ function Login() {
               <br />
               <input
                 className="login-input name"
+                data-testid="password-input-field"
                 id="password"
                 name="password"
                 type="password"
@@ -81,7 +83,7 @@ function Login() {
               />
               <br />
               <div className="login-loading-error-div">
-                <button className="login-button" type="submit">
+                <button className="login-button" data-testid="login-submit-button" type="submit">
                   Login
                 </button>
                 {isLoading && <div className="loader"></div>}
