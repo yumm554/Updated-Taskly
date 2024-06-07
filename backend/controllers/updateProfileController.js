@@ -1,18 +1,11 @@
 const bcryptjs = require('bcryptjs');
 
-// const UpdateProfile = require('../models/UpdateProfileSchema')
 const User = require('../models/SignupSchema');
 
 const updateProfile = async (req, res) => {
   try {
-    const { email: email } = req.params;
+    const { id } = req.params;
     const { username, password } = req.body;
-
-    // Find the existing profile
-    // const profile = await UpdateProfile.findOne({ username: name })
-    // if (!profile) {
-    //   return res.status(404).json({ message: 'Profile not found.' })
-    // }
 
     // Prepare the update object
     const updateData = {};
@@ -33,19 +26,22 @@ const updateProfile = async (req, res) => {
 
     // Update the profile
     const updatedProfile = await User.findOneAndUpdate(
-      { email: email },
+      { _id: id },
       updateData,
       { new: true }
     );
 
-    // If the username was updated, update it in the Task collection as well
-    // if (username) {
-    //   await Task.updateMany({ username: username }, { $set: { username } });
-    // }
-
     // Send back the updated profile
-    console.log({ updatedProfile });
-    res.status(200).json(updatedProfile);
+    console.log({
+      _id: updatedProfile._id,
+      username: updatedProfile.username,
+      email: updatedProfile.email,
+    });
+    res.status(200).json({
+      _id: updatedProfile._id,
+      username: updatedProfile.username,
+      email: updatedProfile.email,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error occurred.' });

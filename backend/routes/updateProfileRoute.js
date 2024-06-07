@@ -4,6 +4,6 @@ const { updateProfile } = require('../controllers/updateProfileController');
 
 router.route('/').post(updateProfile);
 
-router.route('/:email').patch(updateProfile);
+router.route('/:id').patch(updateProfile);
 
 module.exports = router;
