@@ -1,56 +1,57 @@
-import '../assets/css/signup.css'
-import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { signup } from '../handlers/authHandler'
-import { useGlobalContext } from '../features/TaskContext'
+import '../assets/css/signup.css';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { signup } from '../handlers/authHandler';
+import { useGlobalContext } from '../features/TaskContext';
 
 function Signup() {
-  const { user, setUser, loginBtn, setLoginBtn } = useGlobalContext()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const { user, setUser, loginBtn, setLoginBtn } = useGlobalContext();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [displayError, setDisplayError] = useState('An error has occurred')
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [displaySuccess, setDisplaySuccess] = useState('Success')
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [displayError, setDisplayError] = useState('An error has occurred');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [displaySuccess, setDisplaySuccess] = useState('Success');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
-    if (!loginBtn) setLoginBtn(true)
-  }, [])
+    if (!loginBtn) setLoginBtn(true);
+  }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     if (password === confirmPassword) {
       signup({ username: name, email, password })
         .then((resp) => {
-          setIsSuccess(true)
-          setDisplaySuccess(resp.data)
+          setIsSuccess(true);
+          setDisplaySuccess(resp.data);
           setTimeout(() => {
-            setIsLoading(false)
-            navigate('/login')
-          }, 3000)
+            setIsLoading(false);
+            navigate('/login');
+          }, 3000);
         })
         .catch((err) => {
-          setDisplayError(err.response?.data)
-          setIsLoading(false)
-          setIsError(true)
-          setName('')
-          setEmail('')
-          setPassword('')
-          setConfirmPassword('')
-        })
+          setDisplayError(err.response?.data);
+          setIsLoading(false);
+          setIsError(true);
+          setName('');
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+        });
     } else {
-      setDisplayError('Password does not mach')
-      setIsLoading(false)
-      setPassword('')
-      setConfirmPassword('')
+      setDisplayError('Password does not mach');
+      setIsLoading(false);
+      setPassword('');
+      setConfirmPassword('');
     }
-  }
+  };
 
   return (
     <div className="signup-user-main-container">
@@ -146,6 +147,6 @@ function Signup() {
         </div>
       )}
     </div>
-  )
+  );
 }
-export default Signup
+export default Signup;
