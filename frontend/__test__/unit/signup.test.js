@@ -17,7 +17,7 @@ describe('Signup Component', () => {
     useGlobalContext.mockReturnValue({
       user: {}, // mock user object
       setUser: jest.fn(), // mock setUser function
-      loginBtn: false, // mock loginBtn state
+      loginBtn: true, // mock loginBtn state
       setLoginBtn: jest.fn(), // mock setLoginBtn function
     })
   })
@@ -31,7 +31,7 @@ describe('Signup Component', () => {
   })
 
   it('handles form submission', async () => {
-    signup.mockResolvedValueOnce({ data: 'Success' })
+    signup.mockResolvedValueOnce({ data: 'Signed up successfully' })
 
     const { getByLabelText, getByText, getAllByLabelText } = render(
       <MemoryRouter>
@@ -61,6 +61,8 @@ describe('Signup Component', () => {
         password: 'testpassword',
       })
     )
+  
+    expect(getByText('Signed up successfully')).toBeInTheDocument();
   })
 
   it('handles form submission with error', async () => {

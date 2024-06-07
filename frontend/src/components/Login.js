@@ -1,3 +1,4 @@
+import React from 'react'
 import '../assets/css/login.css';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -15,13 +16,14 @@ function Login() {
 
   const navigate = useNavigate();
   useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
     if (!loginBtn) setLoginBtn(true);
   }, []);
   return (
     <div className="login-user-main-container">
-      {user ? (
-        navigate('/')
-      ) : (
+      
         <div className="login-main-container">
           <div className="login-form-container">
             <h2 className="login-main-heading">Login</h2>
@@ -50,7 +52,7 @@ function Login() {
                   });
               }}
             >
-              <label htmlFor="name">- email</label>
+              <label htmlFor="email">email</label>
               <br />
               <input
                 className="login-input name"
@@ -64,7 +66,7 @@ function Login() {
                 required
               />
               <br />
-              <label htmlFor="password">- password </label>
+              <label htmlFor="password">password </label>
               <br />
               <input
                 className="login-input name"
@@ -110,7 +112,7 @@ function Login() {
             </p>
           </div>
         </div>
-      )}
+      
     </div>
   );
 }
