@@ -1,62 +1,63 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { signup } from '../handlers/authHandler'
-import { Link, useNavigate } from 'react-router-dom'
-import { useGlobalContext } from '../features/TaskContext'
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { signup } from '../handlers/authHandler';
+import { Link, useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../features/TaskContext';
 
-import '../assets/css/signup.css'
+import '../assets/css/signup.css';
 
 function Signup() {
-  const { user, setUser, loginBtn, setLoginBtn } = useGlobalContext()
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const { user, loginBtn, setLoginBtn } = useGlobalContext();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [displayError, setDisplayError] = useState('An error has occurred')
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [displaySuccess, setDisplaySuccess] = useState('Success')
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [displayError, setDisplayError] = useState('An error has occurred');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [displaySuccess, setDisplaySuccess] = useState('Success');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      navigate('/')
+      navigate('/');
     }
-    if (!loginBtn) setLoginBtn(true)
-  }, [])
+    if (!loginBtn) setLoginBtn(true);
+  }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     if (password === confirmPassword) {
       signup({ username, email, password })
         .then((resp) => {
-          setIsSuccess(true)
-          setDisplaySuccess(resp.data)
+          setIsSuccess(true);
+          setDisplaySuccess(resp.data);
           setTimeout(() => {
-            setIsLoading(false)
-            navigate('/login')
-          }, 3000)
+            setIsLoading(false);
+            navigate('/login');
+          }, 3000);
         })
         .catch((err) => {
-          console.log({ err })
-          setDisplayError(err.response?.data)
-          setIsLoading(false)
-          setIsError(true)
-          setUsername('')
-          setEmail('')
-          setPassword('')
-          setConfirmPassword('')
-        })
+          console.log({ err });
+          setDisplayError(err.response?.data);
+          setIsLoading(false);
+          setIsError(true);
+          setUsername('');
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+        });
     } else {
-      setDisplayError('Password does not mach')
-      setIsLoading(false)
-      setPassword('')
-      setConfirmPassword('')
+      setDisplayError('Password does not mach');
+      setIsError(true);
+      setIsLoading(false);
+      setPassword('');
+      setConfirmPassword('');
     }
-  }
+  };
 
   return (
     <div className="signup-user-main-container">
@@ -65,7 +66,7 @@ function Signup() {
         <div className="signup-form-container">
           <h1 className="signup-main-heading">Signup</h1>
           <form className="signup-form" onSubmit={handleSubmit}>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">username</label>
             <br />
             <input
               className="signup-input name"
@@ -78,7 +79,7 @@ function Signup() {
               required
             />
             <br />
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">email</label>
             <br />
             <input
               className="signup-input name"
@@ -92,7 +93,7 @@ function Signup() {
             />
             <br />
 
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">password</label>
             <br />
             <input
               className="signup-input password"
@@ -106,7 +107,7 @@ function Signup() {
               required
             />
             <br />
-            <label htmlFor="confirm-password">Confirm Password</label>
+            <label htmlFor="confirm-password">confirm password</label>
             <br />
             <input
               className="signup-input password"
@@ -151,6 +152,6 @@ function Signup() {
       </div>
       )
     </div>
-  )
+  );
 }
-export default Signup
+export default Signup;

@@ -1,5 +1,6 @@
+import React from 'react';
 import '../assets/css/addTask.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTask } from '../handlers/tasksHandler';
 import { useGlobalContext } from '../features/TaskContext';
@@ -42,49 +43,49 @@ function Form() {
     setName('');
   };
 
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, []);
+
   return (
     <div className="addtask-main">
-      {!user ? (
-        navigate('/login')
-      ) : (
-        <div className="addtask-form-container">
-          <h1 className="add-task-heading">Add new task</h1>
-          <form className="addtask-form" onSubmit={handleSubmit}>
-            <div className="task-name-input-container">
-              <label htmlFor="task-name">
-                - title <span className="red-star">*</span>
-              </label>
-              <br />
-              <textarea
-                required
-                className="task-name-input"
-                id="task-name"
-                name="task-name"
-                type="text"
-                placeholder="Enter task name"
-                value={name}
-                rows={4}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-            </div>
-            <div className="add-new-button-div form">
-              <button className="add-new-button form" type="submit">
-                add
-              </button>
-              {isLoading && <div className="loader"></div>}
-              {isSuccess && (
-                <p className="success-added">Added, succesfullly</p>
-              )}
-              {isError && <p className="error">An error has occured</p>}
-            </div>
-          </form>
-          <div className="add-task-blocks main">
-            <Blocks />
+      <div className="addtask-form-container">
+        <h1 className="add-task-heading">Add new task</h1>
+        <form className="addtask-form" onSubmit={handleSubmit}>
+          <div className="task-name-input-container">
+            <label htmlFor="task-name">
+              title <span className="red-star">*</span>
+            </label>
+            <br />
+            <textarea
+              required
+              className="task-name-input"
+              id="task-name"
+              name="task-name"
+              type="text"
+              placeholder="Enter task name"
+              value={name}
+              rows={4}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
           </div>
+          <div className="add-new-button-div form">
+            <button className="add-new-button form" type="submit">
+              add
+            </button>
+            {isLoading && <div className="loader"></div>}
+            {isSuccess && <p className="success-added">Added, succesfullly</p>}
+            {isError && <p className="error">An error has occured</p>}
+          </div>
+        </form>
+        <div className="add-task-blocks main">
+          <Blocks />
         </div>
-      )}
+      </div>
     </div>
   );
 }
