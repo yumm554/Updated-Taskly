@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../assets/css/addTask.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,9 +14,12 @@ function AddTask() {
   const [msg, setMsg] = useState('');
   const { user } = useGlobalContext();
   const navigate = useNavigate();
-  if (!user) {
-    navigate('/login');
-  }
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     const date = new Date();

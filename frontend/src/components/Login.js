@@ -16,10 +16,12 @@ function Login() {
 
   const navigate = useNavigate();
 
-  if (!loginBtn) setLoginBtn(true);
-  if (user) {
-    navigate('/');
-  }
+  useEffect(() => {
+    if (!loginBtn) setLoginBtn(true);
+    if (user) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <div className="login-user-main-container">
@@ -103,8 +105,7 @@ function Login() {
               <p className="no-account-para">
                 {"Don't have an account?"}
                 <Link to="/signup">
-                  {setLoginBtn(true)}
-                  <div className="signup-reflink">Sign up</div>
+                  <span className="signup-reflink">Sign up</span>
                 </Link>
               </p>
             </div>

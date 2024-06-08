@@ -15,14 +15,10 @@ function UpdateProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [displayError, setDisplayError] = useState('An error has occurred');
-  const [msg, setMsg] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDoP, setIsDoP] = useState(false);
 
   const navigate = useNavigate();
-  if (!user) {
-    navigate('/login');
-  }
 
   useEffect(() => {
     if (user) {

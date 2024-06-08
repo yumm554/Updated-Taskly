@@ -15,9 +15,12 @@ function UpdateTask() {
   const [isError, setIsError] = useState(false);
   const [msg, setMsg] = useState('');
   const navigate = useNavigate();
-  if (!user) {
-    navigate('/login');
-  }
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, []);
 
   // useEffect(() => {
   //   getTask().catch((err) => setIsError(true));

@@ -21,10 +21,12 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  if (!loginBtn) setLoginBtn(true);
-  if (user) {
-    navigate('/');
-  }
+  useEffect(() => {
+    if (!loginBtn) setLoginBtn(true);
+    if (user) {
+      navigate('/');
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -138,8 +140,7 @@ function Signup() {
               <p className="no-account-para">
                 Already have an account:
                 <Link to="/login">
-                  {setLoginBtn(true)}
-                  <div className="login-reflink">Login</div>
+                  <span className="login-reflink">Login</span>
                 </Link>
               </p>
             </div>

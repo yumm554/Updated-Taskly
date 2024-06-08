@@ -1,9 +1,9 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/welcome.css';
 import { ChevronRight } from '../assets/icons/icons';
 import { useGlobalContext } from '../features/TaskContext';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 function Welcome() {
   const { user } = useGlobalContext();

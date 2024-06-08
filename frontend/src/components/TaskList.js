@@ -8,20 +8,21 @@ import { ChevronRight } from '../assets/icons/icons';
 import GetTaskList from './GetTaskList';
 
 function TaskList() {
-  const { user, getAgain, setGetAgain, welcome, setWelcome } =
-    useGlobalContext();
-
-  const navigate = useNavigate();
-  if (!welcome) setWelcome(true);
-  if (getAgain) setGetAgain(!getAgain);
-  if (!user) {
-    navigate('/login');
-  }
-
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [taskData, setTaskData] = useState();
   const [counter, setCounter] = useState(0);
+  const { user, getAgain, setGetAgain, welcome, setWelcome } =
+    useGlobalContext();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!welcome) setWelcome(true);
+    if (!user) {
+      navigate('/login');
+    }
+    setGetAgain(!getAgain);
+  }, []);
 
   useEffect(() => {
     if (user)
