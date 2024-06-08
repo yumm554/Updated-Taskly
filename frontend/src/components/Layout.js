@@ -11,6 +11,7 @@ function Layout() {
     location.pathname === '/tasks' ||
     location.pathname === '/login' ||
     location.pathname === '/signup';
+
   useEffect(() => {
     window.addEventListener('click', function (e) {
       if (!e.target.closest('.nav-container')) setMenu(false);
@@ -20,7 +21,7 @@ function Layout() {
   return (
     <div
       className={`layout ${
-        isHomePage ? 'layout-front' : `layout-all ${taskUrl ? '' : 'forms'}`
+        isHomePage ? 'layout-front' : `layout-all ${taskUrl ? '' : 'forms'} `
       }`}
     >
       <div className="layout-wrapper">

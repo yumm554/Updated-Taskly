@@ -61,87 +61,88 @@ function Signup() {
 
   return (
     <div className="signup-user-main-container">
-      (
       <div className="signup-main-container">
         <div className="signup-form-container">
-          <h1 className="signup-main-heading">Signup</h1>
-          <form className="signup-form" onSubmit={handleSubmit}>
-            <label htmlFor="username">username</label>
-            <br />
-            <input
-              className="signup-input name"
-              id="username"
-              name="username"
-              type="text"
-              placeholder="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <br />
-            <label htmlFor="email">email</label>
-            <br />
-            <input
-              className="signup-input name"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <br />
+          <div className="signup-form-wrapper">
+            <h1 className="signup-main-heading">Signup</h1>
+            <form className="signup-form" onSubmit={handleSubmit}>
+              <label htmlFor="username">username</label>
+              <br />
+              <input
+                className="signup-input name"
+                id="username"
+                name="username"
+                type="text"
+                placeholder="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <br />
+              <label htmlFor="email">email</label>
+              <br />
+              <input
+                className="signup-input name"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <br />
 
-            <label htmlFor="password">password</label>
-            <br />
-            <input
-              className="signup-input password"
-              id="password"
-              // name="password"
-              type="password"
-              placeholder="password"
-              // autoComplete="new-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <br />
-            <label htmlFor="confirm-password">confirm password</label>
-            <br />
-            <input
-              className="signup-input password"
-              id="confirm-password"
-              // name="confirm-password"
-              type="password"
-              placeholder="confirm password"
-              // autoComplete="current-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-            <br />
-            <div className="signup-loading-error-div">
-              <button className="signup-button" type="submit">
-                Create Account
-              </button>
-              {isLoading && <div className="loader"></div>}
-              {isError && (
-                <p className="error">
-                  {displayError || 'An error has occurred'}
-                </p>
-              )}
-              {isSuccess && <p className="success-added">{displaySuccess}</p>}
+              <label htmlFor="password">password</label>
+              <br />
+              <input
+                className="signup-input password"
+                id="password"
+                // name="password"
+                type="password"
+                placeholder="password"
+                // autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <br />
+              <label htmlFor="confirm-password">confirm password</label>
+              <br />
+              <input
+                className="signup-input password"
+                id="confirm-password"
+                // name="confirm-password"
+                type="password"
+                placeholder="confirm password"
+                // autoComplete="current-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <br />
+              <div className="signup-loading-error-div">
+                <button className="signup-button" type="submit">
+                  Create Account
+                </button>
+                {isLoading && <div className="loader"></div>}
+                {isError && (
+                  <p className="error">
+                    {displayError || 'An error has occurred'}
+                  </p>
+                )}
+                {isSuccess && <p className="success-added">{displaySuccess}</p>}
+              </div>
+            </form>
+            <div className="no-account-container">
+              <p className="no-account-para">
+                Already have an account:
+                <Link to="/login">
+                  {setLoginBtn(true)}
+                  <div className="login-reflink">Login</div>
+                </Link>
+              </p>
             </div>
-          </form>
-          <div className="no-account-container">
-            <p className="no-account-para">
-              Already have an account:
-              <Link to="/login">
-                {setLoginBtn(true)}
-                <div className="login-reflink">Login</div>
-              </Link>
-            </p>
           </div>
         </div>
         <div className="signup-banner-container">

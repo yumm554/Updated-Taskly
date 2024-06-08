@@ -4,6 +4,8 @@
   justify-content: center;
   position: relative;
   padding: 8% 30px 0 30px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .updatetask-form-container {

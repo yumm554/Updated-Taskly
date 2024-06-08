@@ -25,86 +25,89 @@ function Login() {
     <div className="login-user-main-container">
       <div className="login-main-container">
         <div className="login-form-container">
-          <h2 className="login-main-heading">Login</h2>
-          <form
-            className="login-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setIsError(false);
-              setIsLoading(true);
-              login({ email, password })
-                .then((resp) => {
-                  localStorage.setItem('user', JSON.stringify(resp?.data));
-                  setUser(resp?.data);
-                  navigate(`/tasks`);
-                })
-                .catch((err) => {
-                  setDisplayError(err?.response?.data);
-                  setIsLoading(false);
-                  setIsError(true);
-                  if (err?.response?.data == 'Incorrect Password!') {
-                    setPassword('');
-                  } else {
-                    setEmail('');
-                    setPassword('');
-                  }
-                });
-            }}
-          >
-            <label htmlFor="email">email</label>
-            <br />
-            <input
-              className="login-input name"
-              data-testid="email-input-field"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="email"
-              value={email}
-              autoComplete="email"
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <br />
-            <label htmlFor="password">password </label>
-            <br />
-            <input
-              className="login-input name"
-              data-testid="password-input-field"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <br />
-            <div className="login-loading-error-div">
-              <button
-                className="login-button"
-                data-testid="login-submit-button"
-                type="submit"
-              >
-                Login
-              </button>
-              {isLoading && <div className="loader"></div>}
-              {isError && (
-                <p className="error">
-                  {displayError || 'An error has occured'}
-                </p>
-              )}
+          <div className="login-form-wrapper">
+            <h2 className="login-main-heading">Login</h2>
+            <form
+              className="login-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                setIsError(false);
+                setIsLoading(true);
+                login({ email, password })
+                  .then((resp) => {
+                    localStorage.setItem('user', JSON.stringify(resp?.data));
+                    setUser(resp?.data);
+                    navigate(`/tasks`);
+                  })
+                  .catch((err) => {
+                    setDisplayError(err?.response?.data);
+                    setIsLoading(false);
+                    setIsError(true);
+                    if (err?.response?.data == 'Incorrect Password!') {
+                      setPassword('');
+                    } else {
+                      setEmail('');
+                      setPassword('');
+                    }
+                  });
+              }}
+            >
+              <label htmlFor="email">email</label>
+              <br />
+              <input
+                className="login-input name"
+                data-testid="email-input-field"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="email"
+                value={email}
+                autoComplete="email"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <br />
+              <label htmlFor="password">password </label>
+              <br />
+              <input
+                className="login-input name"
+                data-testid="password-input-field"
+                id="password"
+                name="password"
+                type="password"
+                placeholder="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <br />
+              <div className="login-loading-error-div">
+                <button
+                  className="login-button"
+                  data-testid="login-submit-button"
+                  type="submit"
+                >
+                  Login
+                </button>
+                {isLoading && <div className="loader"></div>}
+                {isError && (
+                  <p className="error">
+                    {displayError || 'An error has occured'}
+                  </p>
+                )}
+              </div>
+            </form>
+
+            <div className="no-account-container">
+              <p className="no-account-para">
+                {"Don't have an account?"}
+                <Link to="/signup">
+                  {setLoginBtn(true)}
+                  <div className="signup-reflink">Sign up</div>
+                </Link>
+              </p>
             </div>
-          </form>
-          <div className="no-account-container">
-            <p className="no-account-para">
-              {"Don't have an account?"}
-              <Link to="/signup">
-                {setLoginBtn(true)}
-                <div className="signup-reflink">Sign up</div>
-              </Link>
-            </p>
           </div>
         </div>
         <div className="login-banner-container">

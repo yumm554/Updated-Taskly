@@ -2,7 +2,12 @@
   position: absolute;
   top: 0;
   width: 100%;
+  max-width: 1400px;
   z-index: 1;
+}
+.layout-header {
+  max-width: 1400px;
+  width: 100%;
 }
 .task-manager-header {
   padding: 10px 30px 0 30px;
