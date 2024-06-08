@@ -89,6 +89,12 @@
   text-decoration: line-through;
 }
 
+.no-btn {
+  border: 0px solid;
+  padding: 0;
+  background-color: transparent;
+}
+
 .list-task-content {
   display: flex;
   gap: 30px;

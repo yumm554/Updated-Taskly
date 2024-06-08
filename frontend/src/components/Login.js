@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import '../assets/css/login.css';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -15,106 +15,108 @@ function Login() {
   const [displayError, setDisplayError] = useState('An error has occurred');
 
   const navigate = useNavigate();
-  useEffect(() => {
-    if (user) {
-      navigate('/')
-    }
-    if (!loginBtn) setLoginBtn(true);
-  }, []);
+
+  if (!loginBtn) setLoginBtn(true);
+  if (user) {
+    navigate('/');
+  }
+
   return (
     <div className="login-user-main-container">
-      
-        <div className="login-main-container">
-          <div className="login-form-container">
-            <h2 className="login-main-heading">Login</h2>
-            <form
-              className="login-form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setIsError(false);
-                setIsLoading(true);
-                login({ email, password })
-                  .then((resp) => {
-                    localStorage.setItem('user', JSON.stringify(resp?.data));
-                    setUser(resp?.data);
-                    navigate(`/tasks`);
-                  })
-                  .catch((err) => {
-                    setDisplayError(err?.response?.data);
-                    setIsLoading(false);
-                    setIsError(true);
-                    if (err?.response?.data == 'Incorrect Password!') {
-                      setPassword('');
-                    } else {
-                      setEmail('');
-                      setPassword('');
-                    }
-                  });
-              }}
-            >
-              <label htmlFor="email">email</label>
-              <br />
-              <input
-                className="login-input name"
-                data-testid="email-input-field"
-                id="email"
-                name="email"
-                type="email"
-                placeholder="email"
-                value={email}
-                autoComplete="email"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <br />
-              <label htmlFor="password">password </label>
-              <br />
-              <input
-                className="login-input name"
-                data-testid="password-input-field"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <br />
-              <div className="login-loading-error-div">
-                <button className="login-button" data-testid="login-submit-button" type="submit">
-                  Login
-                </button>
-                {isLoading && <div className="loader"></div>}
-                {isError && (
-                  <p className="error">
-                    {displayError || 'An error has occured'}
-                  </p>
-                )}
-              </div>
-            </form>
-            <div className="no-account-container">
-              <p className="no-account-para">
-                {"Don't have an account?"}
-                <Link to="/signup">
-                  {setLoginBtn(true)}
-                  <div className="signup-reflink">Sign up</div>
-                </Link>
-              </p>
+      <div className="login-main-container">
+        <div className="login-form-container">
+          <h2 className="login-main-heading">Login</h2>
+          <form
+            className="login-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setIsError(false);
+              setIsLoading(true);
+              login({ email, password })
+                .then((resp) => {
+                  localStorage.setItem('user', JSON.stringify(resp?.data));
+                  setUser(resp?.data);
+                  navigate(`/tasks`);
+                })
+                .catch((err) => {
+                  setDisplayError(err?.response?.data);
+                  setIsLoading(false);
+                  setIsError(true);
+                  if (err?.response?.data == 'Incorrect Password!') {
+                    setPassword('');
+                  } else {
+                    setEmail('');
+                    setPassword('');
+                  }
+                });
+            }}
+          >
+            <label htmlFor="email">email</label>
+            <br />
+            <input
+              className="login-input name"
+              data-testid="email-input-field"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="email"
+              value={email}
+              autoComplete="email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <br />
+            <label htmlFor="password">password </label>
+            <br />
+            <input
+              className="login-input name"
+              data-testid="password-input-field"
+              id="password"
+              name="password"
+              type="password"
+              placeholder="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <br />
+            <div className="login-loading-error-div">
+              <button
+                className="login-button"
+                data-testid="login-submit-button"
+                type="submit"
+              >
+                Login
+              </button>
+              {isLoading && <div className="loader"></div>}
+              {isError && (
+                <p className="error">
+                  {displayError || 'An error has occured'}
+                </p>
+              )}
             </div>
-          </div>
-          <div className="login-banner-container">
-            <h3 className="login-banner-content">
-              Task management app to manage your tasks taskly!
-            </h3>
-            <p className="login-banner-para">
-              Monitor and organize your tasks, mark them as completed, remove
-              tasks, and make updates to existing tasks.
+          </form>
+          <div className="no-account-container">
+            <p className="no-account-para">
+              {"Don't have an account?"}
+              <Link to="/signup">
+                {setLoginBtn(true)}
+                <div className="signup-reflink">Sign up</div>
+              </Link>
             </p>
           </div>
         </div>
-      
+        <div className="login-banner-container">
+          <h3 className="login-banner-content">
+            Task management app to manage your tasks taskly!
+          </h3>
+          <p className="login-banner-para">
+            Monitor and organize your tasks, mark them as completed, remove
+            tasks, and make updates to existing tasks.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

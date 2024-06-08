@@ -1,3 +1,4 @@
+import React from 'react';
 import Task from '../components/Task';
 
 function GetTaskList(props) {
@@ -8,7 +9,7 @@ function GetTaskList(props) {
         <p>There are no tasks in your list</p>
       ) : (
         data.map((task) => {
-          return <Task key={task._id} {...task} />;
+          return <Task {...task} />;
         })
       )}
     </div>

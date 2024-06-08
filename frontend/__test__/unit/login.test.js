@@ -9,7 +9,7 @@ jest.mock('../../src/handlers/authHandler');
 
 jest.mock('../../src/features/TaskContext', () => ({
   useGlobalContext: () => ({
-    user: {},
+    user: null,
     setUser: jest.fn(),
     loginBtn: true,
     setLoginBtn: jest.fn(),

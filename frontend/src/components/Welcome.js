@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import '../assets/css/welcome.css';
-import { ReactComponent as ChevronRight } from '../assets/images/chevron-right.svg';
+import { ChevronRight } from '../assets/icons/icons';
 import { useGlobalContext } from '../features/TaskContext';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Welcome() {
   const { user } = useGlobalContext();

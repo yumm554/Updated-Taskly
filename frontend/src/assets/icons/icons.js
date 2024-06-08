@@ -1,3 +1,310 @@
+import React from 'react';
+
+export const AddTaskSvg = () => {
+  return (
+    <i className="svg-icon add-task-svg">
+      <svg
+        width="189"
+        height="130"
+        viewBox="0 0 189 130"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_11_618)">
+          <g filter="url(#filter0_d_11_618)">
+            <rect y="42" width="50" height="47" rx="7" fill="#3E66FB" />
+          </g>
+          <g filter="url(#filter1_d_11_618)">
+            <rect x="92" y="42" width="50" height="47" rx="7" fill="#3E66FB" />
+          </g>
+          <g filter="url(#filter2_d_11_618)">
+            <rect x="139" y="83" width="50" height="47" rx="7" fill="#3E66FB" />
+          </g>
+          <g filter="url(#filter3_d_11_618)">
+            <rect x="46" width="50" height="47" rx="7" fill="#3E66FB" />
+          </g>
+        </g>
+        <defs>
+          <filter
+            id="filter0_d_11_618"
+            x="-32"
+            y="18"
+            width="104"
+            height="101"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dx="-5" dy="3" />
+            <feGaussianBlur stdDeviation="13.5" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"
+            />
+            <feBlend
+              mode="normal"
+              in2="BackgroundImageFix"
+              result="effect1_dropShadow_11_618"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_dropShadow_11_618"
+              result="shape"
+            />
+          </filter>
+          <filter
+            id="filter1_d_11_618"
+            x="60"
+            y="18"
+            width="104"
+            height="101"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dx="-5" dy="3" />
+            <feGaussianBlur stdDeviation="13.5" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"
+            />
+            <feBlend
+              mode="normal"
+              in2="BackgroundImageFix"
+              result="effect1_dropShadow_11_618"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_dropShadow_11_618"
+              result="shape"
+            />
+          </filter>
+          <filter
+            id="filter2_d_11_618"
+            x="107"
+            y="59"
+            width="104"
+            height="101"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dx="-5" dy="3" />
+            <feGaussianBlur stdDeviation="13.5" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"
+            />
+            <feBlend
+              mode="normal"
+              in2="BackgroundImageFix"
+              result="effect1_dropShadow_11_618"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_dropShadow_11_618"
+              result="shape"
+            />
+          </filter>
+          <filter
+            id="filter3_d_11_618"
+            x="14"
+            y="-24"
+            width="104"
+            height="101"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dx="-5" dy="3" />
+            <feGaussianBlur stdDeviation="13.5" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"
+            />
+            <feBlend
+              mode="normal"
+              in2="BackgroundImageFix"
+              result="effect1_dropShadow_11_618"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_dropShadow_11_618"
+              result="shape"
+            />
+          </filter>
+          <clipPath id="clip0_11_618">
+            <rect width="189" height="130" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </i>
+  );
+};
+
+export const UpdateTaskSvg = () => {
+  return (
+    <i className="svg-icon update-task-svg">
+      <svg
+        width="96"
+        height="89"
+        viewBox="0 0 96 89"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_11_655)">
+          <g filter="url(#filter0_d_11_655)">
+            <rect y="42" width="50" height="47" rx="7" fill="#3E66FB" />
+          </g>
+          <g filter="url(#filter1_d_11_655)">
+            <rect x="46" width="50" height="47" rx="7" fill="#3E66FB" />
+          </g>
+        </g>
+        <defs>
+          <filter
+            id="filter0_d_11_655"
+            x="-32"
+            y="18"
+            width="104"
+            height="101"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dx="-5" dy="3" />
+            <feGaussianBlur stdDeviation="13.5" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"
+            />
+            <feBlend
+              mode="normal"
+              in2="BackgroundImageFix"
+              result="effect1_dropShadow_11_655"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_dropShadow_11_655"
+              result="shape"
+            />
+          </filter>
+          <filter
+            id="filter1_d_11_655"
+            x="14"
+            y="-24"
+            width="104"
+            height="101"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              result="hardAlpha"
+            />
+            <feOffset dx="-5" dy="3" />
+            <feGaussianBlur stdDeviation="13.5" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix
+              type="matrix"
+              values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.16 0"
+            />
+            <feBlend
+              mode="normal"
+              in2="BackgroundImageFix"
+              result="effect1_dropShadow_11_655"
+            />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="effect1_dropShadow_11_655"
+              result="shape"
+            />
+          </filter>
+          <clipPath id="clip0_11_655">
+            <rect width="96" height="89" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </i>
+  );
+};
+
+export const ChevronRight = () => {
+  return (
+    <i className="svg-icon chevron-right">
+      <svg
+        width="15px"
+        height="15px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <g id="SVGRepo_iconCarrier">
+          {' '}
+          <path
+            d="M9 6L15 12L9 18"
+            stroke="#fff"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />{' '}
+        </g>
+      </svg>
+    </i>
+  );
+};
+
 export const Edit = () => {
   return (
     <i className="svg-icon edit">

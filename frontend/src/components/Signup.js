@@ -20,16 +20,16 @@ function Signup() {
   const [displaySuccess, setDisplaySuccess] = useState('Success');
 
   const navigate = useNavigate();
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-    if (!loginBtn) setLoginBtn(true);
-  }, []);
+
+  if (!loginBtn) setLoginBtn(true);
+  if (user) {
+    navigate('/');
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setIsError(false);
     if (password === confirmPassword) {
       signup({ username, email, password })
         .then((resp) => {
@@ -126,7 +126,11 @@ function Signup() {
                 Create Account
               </button>
               {isLoading && <div className="loader"></div>}
-              {isError && <p className="error">{displayError}</p>}
+              {isError && (
+                <p className="error">
+                  {displayError || 'An error has occurred'}
+                </p>
+              )}
               {isSuccess && <p className="success-added">{displaySuccess}</p>}
             </div>
           </form>

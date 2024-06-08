@@ -1,18 +1,23 @@
 import React from 'react';
 import '../assets/css/addTask.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTask } from '../handlers/tasksHandler';
 import { useGlobalContext } from '../features/TaskContext';
-import { ReactComponent as Blocks } from '../assets/images/add-task-blocks.svg';
+import { AddTaskSvg } from '../assets/icons/icons';
 
-function Form() {
+function AddTask() {
   const [isSuccess, setIsSucces] = useState(false);
   const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [msg, setMsg] = useState('');
   const { user } = useGlobalContext();
   const navigate = useNavigate();
+  if (!user) {
+    navigate('/login');
+  }
+
   const handleSubmit = (e) => {
     const date = new Date();
     const formattedDate = date
@@ -33,21 +38,17 @@ function Form() {
       dateCreated: formattedDate,
     })
       .then((resp) => {
+        setMsg(resp?.data);
         setIsSucces(true);
         setIsLoading(false);
       })
       .catch((err) => {
+        setMsg(err?.response?.data);
         setIsError(true);
         setIsLoading(false);
       });
     setName('');
   };
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
-  }, []);
 
   return (
     <div className="addtask-main">
@@ -78,15 +79,17 @@ function Form() {
               add
             </button>
             {isLoading && <div className="loader"></div>}
-            {isSuccess && <p className="success-added">Added, succesfullly</p>}
-            {isError && <p className="error">An error has occured</p>}
+            {isSuccess && <p className="success-added">{msg}</p>}
+            {isError && (
+              <p className="error">{msg || 'An error has occurred'}</p>
+            )}
           </div>
         </form>
         <div className="add-task-blocks main">
-          <Blocks />
+          <AddTaskSvg />
         </div>
       </div>
     </div>
   );
 }
-export default Form;
+export default AddTask;

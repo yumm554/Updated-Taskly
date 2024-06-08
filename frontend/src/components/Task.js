@@ -1,3 +1,4 @@
+import React from 'react';
 import { useGlobalContext } from '../features/TaskContext';
 import { deleteTask } from '../handlers/tasksHandler';
 import { Completed, Delete, Edit } from '../assets/icons/icons';
@@ -8,6 +9,7 @@ function Task(props) {
   const navigate = useNavigate();
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const [isDeleteError, setIsDeleteError] = useState(false);
+  const [msg, setMsg] = useState('');
   const { setTask, getAgain, setGetAgain } = useGlobalContext();
   const { _id: taskId, name, completed, dateCreated } = props;
   const paraRef = useRef();
@@ -34,34 +36,39 @@ function Task(props) {
         )}
         <div className="list-icons">
           {(isDeleteLoading && <div className="loader"></div>) ||
-            (isDeleteError && <p className="error">error</p>)}
-          <div
-            className="transparent-btn"
+            (isDeleteError && <p className="error">{msg}</p>) ||
+            (!isDeleteError && <p className="success-added">{msg}</p>)}
+          <button
+            className="no-btn"
             onClick={() => {
               setIsDeleteLoading(true);
               setTask(props);
               navigate(`${taskId}`);
             }}
+            aria-label="edit task"
           >
             <Edit />
-          </div>
-          <div
-            className="transparent-btn"
+          </button>
+          <button
+            className="no-btn"
             onClick={() => {
               setIsDeleteLoading(true);
               deleteTask(taskId)
                 .then((resp) => {
+                  setMsg(resp?.data);
                   setIsDeleteLoading(false);
                   setGetAgain(!getAgain);
                 })
                 .catch((err) => {
+                  setMsg(err?.response?.data || 'error');
                   setIsDeleteError(true);
                   setIsDeleteLoading(false);
                 });
             }}
+            aria-label="delete task"
           >
             <Delete />
-          </div>
+          </button>
         </div>
       </div>
     </div>
