@@ -15,16 +15,14 @@ function UpdateProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [displayError, setDisplayError] = useState('An error has occurred');
+  const [msg, setMsg] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
   const [isDoP, setIsDoP] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
-  }, []);
+  if (!user) {
+    navigate('/login');
+  }
 
   useEffect(() => {
     if (user) {
@@ -32,7 +30,7 @@ function UpdateProfile() {
       setEmail(user?.email || '');
       setPassword('');
     }
-  }, [user]);
+  }, []);
 
   return (
     <div className="update-login-main-container">
@@ -67,7 +65,7 @@ function UpdateProfile() {
             }}
           >
             <label htmlFor="name">
-              - username <span className="red-star">*</span>
+              username <span className="red-star">*</span>
             </label>
             <br />
             <input
@@ -81,7 +79,7 @@ function UpdateProfile() {
               onChange={(e) => setName(e.target.value)}
             />
             <br />
-            <label htmlFor="email">- email </label>
+            <label htmlFor="email">email </label>
             <br />
             <input
               className="update-login-input name"
@@ -93,7 +91,7 @@ function UpdateProfile() {
               value={email}
             />
             <br />
-            <label htmlFor="password">- password</label>
+            <label htmlFor="password">password</label>
             <br />
             <input
               className="update-login-input name"
@@ -111,7 +109,7 @@ function UpdateProfile() {
               </button>
               {!isDoP && isLoading && <div className="loader"></div>}
               {!isDoP && isSuccess && (
-                <p className="success-added">Update, successfully</p>
+                <p className="success-added">Updated, successfully</p>
               )}
               {!isDoP && isError && (
                 <p className="error">
@@ -137,15 +135,10 @@ function UpdateProfile() {
                   setIsLoading(true);
                   deleteProfile(user?._id)
                     .then((resp) => {
-                      if (resp.data.success) {
-                        setIsSuccess(true);
-                        localStorage.clear();
-                        setUser(null);
-                        navigate('/login');
-                      } else {
-                        setIsError(true);
-                        setDisplayError(resp.data?.message);
-                      }
+                      setIsSuccess(true);
+                      localStorage.clear();
+                      setUser(null);
+                      navigate('/login');
                       setIsLoading(false);
                     })
                     .catch((err) => {
