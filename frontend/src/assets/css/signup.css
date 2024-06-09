@@ -17,6 +17,14 @@
   margin: 0 0 0 auto;
 }
 
+.validation-error {
+  font-size: 12px;
+  color: #a9a9a9;
+  text-align: center;
+  text-align: left;
+  margin: 0 0 10px 0;
+}
+
 .signup-main-heading {
   margin-top: 0;
   color: #000;

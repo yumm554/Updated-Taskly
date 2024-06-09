@@ -50,7 +50,7 @@ function UpdateTask() {
         setMsg(err?.response?.data);
         setIsError(true);
       });
-  }, []);
+  }, [user, navigate, id]);
 
   return (
     <div className="updatetask-main">

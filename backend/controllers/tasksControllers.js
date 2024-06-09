@@ -2,25 +2,29 @@ const Task = require('../models/TaskSchema');
 
 const getAllTask = async (req, res) => {
   try {
-    const { email } = req.params;
-    const task = await Task.find({ email });
+    console.log(req.params);
+    const { id: userId } = req.params;
+    console.log(userId);
+    const task = await Task.find({ userId });
     if (!task) {
       res.status(200).json([]);
     }
     res.json(task);
   } catch (err) {
     console.log(err);
+    return res.status(500).json('An error occurred');
   }
 };
 
 const createTask = async (req, res) => {
   try {
-    const { name, email, dateCreated } = await req.body;
+    const { name, id: userId, dateCreated } = await req.body;
+    console.log({ name, userId, dateCreated });
     if (!name) {
       return res.status(400).json('must provide name');
     }
 
-    const task = await Task.create({ name, email, dateCreated });
+    const task = await Task.create({ name, userId, dateCreated });
     console.log({ task });
     return res.status(200).json(`Added, succesfully`);
   } catch (err) {

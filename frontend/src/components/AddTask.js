@@ -38,7 +38,7 @@ function AddTask() {
     setIsLoading(true);
     createTask({
       name: name,
-      email: user.email,
+      id: user._id,
       dateCreated: formattedDate,
     })
       .then((resp) => {

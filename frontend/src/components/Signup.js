@@ -79,12 +79,16 @@ function Signup() {
                 id="username"
                 name="username"
                 type="text"
+                pattern="\w{2,10}"
                 placeholder="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
-              <br />
+              <p className="validation-error">
+                Username must be between 2-10 characters, can contain
+                alphanumeric and underscore only.
+              </p>
               <label htmlFor="email">email</label>
               <br />
               <input
@@ -93,6 +97,7 @@ function Signup() {
                 name="email"
                 type="email"
                 placeholder="email"
+                pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -107,12 +112,16 @@ function Signup() {
                 // name="password"
                 type="password"
                 placeholder="password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 // autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <br />
+              <p className="validation-error">
+                must contain 8 or more characters that are of at least one
+                number, and one uppercase and lowercase letter
+              </p>
               <label htmlFor="confirm-password">confirm password</label>
               <br />
               <input

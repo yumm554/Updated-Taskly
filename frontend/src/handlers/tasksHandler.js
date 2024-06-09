@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const accessAllTasks = async (email) => {
+export const accessAllTasks = async (id) => {
   const allTasks = await axios.get(
-    `http://localhost:3001/api/v1/tasks/all/${email}`
+    `http://localhost:3001/api/v1/tasks/all/${id}`
   );
   return allTasks.data;
 };

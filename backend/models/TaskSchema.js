@@ -5,8 +5,8 @@ const TaskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
-    type: mongoose.Schema.Types.String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'Login',
   },
