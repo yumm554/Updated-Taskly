@@ -22,10 +22,14 @@ function Signup() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loginBtn) setLoginBtn(true);
-    if (user) {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (currentUser) {
       navigate('/');
     }
+  }, []);
+
+  useEffect(() => {
+    if (!loginBtn) setLoginBtn(true);
   }, []);
 
   const handleSubmit = (e) => {

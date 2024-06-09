@@ -16,11 +16,16 @@ function TaskList() {
     useGlobalContext();
 
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (!welcome) setWelcome(true);
-    if (!user) {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser) {
       navigate('/login');
     }
+  }, []);
+
+  useEffect(() => {
+    if (!welcome) setWelcome(true);
     setGetAgain(!getAgain);
   }, []);
 

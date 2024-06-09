@@ -16,7 +16,8 @@ function AddTask() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    if (!currentUser) {
       navigate('/login');
     }
   }, []);
