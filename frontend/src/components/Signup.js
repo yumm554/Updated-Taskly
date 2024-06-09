@@ -29,7 +29,7 @@ function Signup() {
   }, []);
 
   useEffect(() => {
-    if (!loginBtn) setLoginBtn(true);
+    setLoginBtn(true);
   }, []);
 
   const handleSubmit = (e) => {

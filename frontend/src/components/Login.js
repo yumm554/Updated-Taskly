@@ -24,7 +24,7 @@ function Login() {
   }, []);
 
   useEffect(() => {
-    if (!loginBtn) setLoginBtn(true);
+    setLoginBtn(true);
   }, []);
 
   return (
