@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const accessAllTasks = async (email) => {
   const allTasks = await axios.get(
-    `http://localhost:3001/api/v1/tasks/${email}`
+    `http://localhost:3001/api/v1/tasks/all/${email}`
   );
   return allTasks.data;
 };

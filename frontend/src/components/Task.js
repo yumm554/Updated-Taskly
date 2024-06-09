@@ -22,18 +22,20 @@ function Task(props) {
     <div className="lists">
       <div className="list-task-date">{dateCreated || 'N/A'}</div>
       <div className="list-task-content">
-        {completed ? (
-          <div className="completed-div">
-            <Completed />
-            <p ref={paraRef} className={`list-name completed `}>
+        <div className="list-task-name-wrapper">
+          {completed ? (
+            <div className="completed-div">
+              <Completed />
+              <p ref={paraRef} className={`list-name completed `}>
+                {name}
+              </p>
+            </div>
+          ) : (
+            <p ref={paraRef} className={`list-name `}>
               {name}
             </p>
-          </div>
-        ) : (
-          <p ref={paraRef} className={`list-name `}>
-            {name}
-          </p>
-        )}
+          )}
+        </div>
         <div className="list-icons">
           {(isDeleteLoading && <div className="loader"></div>) ||
             (isDeleteError && <p className="error">{msg}</p>) ||

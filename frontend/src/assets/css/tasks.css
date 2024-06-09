@@ -67,17 +67,21 @@
   background-color: #f9f9fb;
 }
 
+.list-task-name-wrapper {
+  position: relative;
+}
+
 .list-name {
-  height: 100px;
+  height: 90px;
   overflow: hidden;
   margin: 0;
-  position: relative;
 }
 .list-name.dots::after {
   content: '...';
   position: absolute;
   bottom: 0px;
   right: 0;
+  line-height: 1.1em;
 }
 
 .completed-div {
@@ -87,7 +91,8 @@
   grid-gap: 10px;
 }
 
-.completed {
+.list-name.completed {
+  height: 90px;
   text-decoration: line-through;
 }
 

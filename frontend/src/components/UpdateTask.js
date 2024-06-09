@@ -1,46 +1,56 @@
-import React from 'react'
-import '../assets/css/updateTask.css'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { accessAllTasks, getTask, updateTask } from '../handlers/tasksHandler'
-import { useGlobalContext } from '../features/TaskContext'
-import { UpdateTaskSvg } from '../assets/icons/icons'
-import { useParams } from 'react-router-dom'
+import React from 'react';
+import '../assets/css/updateTask.css';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { accessAllTasks, getTask, updateTask } from '../handlers/tasksHandler';
+import { useGlobalContext } from '../features/TaskContext';
+import { UpdateTaskSvg } from '../assets/icons/icons';
+import { useParams } from 'react-router-dom';
 
 function UpdateTask() {
-  const { task, setTask, user } = useGlobalContext()
-  const [name, setName] = useState(task?.name)
-  const [completed, setCompleted] = useState(task?.completed)
-  const [isSuccess, setIsSuccess] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [msg, setMsg] = useState('')
-  const navigate = useNavigate()
-  const { id } = useParams()
+  const { task, setTask, user } = useGlobalContext();
+  const [name, setName] = useState(task?.name);
+  const [completed, setCompleted] = useState(task?.completed);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [msg, setMsg] = useState('');
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('user'))
+    const currentUser = JSON.parse(localStorage.getItem('user'));
     if (!currentUser) {
-      navigate('/login')
+      navigate('/login');
     }
-  }, [])
-
-  useEffect(() => {
-    setIsLoading(true)
-    accessAllTasks(user?.email)
-      .then((resp) => {
-        setTask(resp?.find((task) => task._id === id))
-        setIsLoading(false)
-      })
-      .catch((err) => {
-        setIsError(true)
-        setIsLoading(false)
-      })
-  }, [user, navigate, id])
+  }, []);
 
   // useEffect(() => {
-  //   getTask().catch((err) => setIsError(true));
-  // }, [isError]);
+  //   setIsLoading(true);
+  //   accessAllTasks(user?.email)
+  //     .then((resp) => {
+  //       setTask(resp?.find((task) => task._id === id));
+  //       setIsLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setIsError(true);
+  //       setIsLoading(false);
+  //     });
+  // }, [user, navigate, id]);
+
+  useEffect(() => {
+    getTask(id)
+      .then((resp) => {
+        setTask(resp?.data);
+        setName(resp?.data?.name);
+        setCompleted(resp?.data?.completed);
+      })
+      .catch((err) => {
+        console.log(err);
+        setMsg(err?.response?.data);
+        setIsError(true);
+      });
+  }, []);
 
   return (
     <div className="updatetask-main">
@@ -50,21 +60,21 @@ function UpdateTask() {
           <form
             className="updatetask-form"
             onSubmit={(e) => {
-              e.preventDefault()
-              setIsError(false)
-              setIsSuccess(false)
-              setIsLoading(true)
+              e.preventDefault();
+              setIsError(false);
+              setIsSuccess(false);
+              setIsLoading(true);
               updateTask(id, { name: name, completed: completed })
                 .then((resp) => {
-                  setMsg(resp?.data)
-                  setIsSuccess(true)
-                  setIsLoading(false)
+                  setMsg(resp?.data);
+                  setIsSuccess(true);
+                  setIsLoading(false);
                 })
                 .catch((err) => {
-                  setMsg(err?.response?.data)
-                  setIsError(true)
-                  setIsLoading(false)
-                })
+                  setMsg(err?.response?.data);
+                  setIsError(true);
+                  setIsLoading(false);
+                });
             }}
           >
             <label htmlFor="id">id</label>
@@ -91,7 +101,7 @@ function UpdateTask() {
               value={name}
               rows={4}
               onChange={(e) => {
-                setName(e.target.value)
+                setName(e.target.value);
               }}
             />
             <div className="input-container">
@@ -102,7 +112,7 @@ function UpdateTask() {
                 type="checkbox"
                 checked={completed}
                 onChange={(e) => {
-                  setCompleted(!completed)
+                  setCompleted(!completed);
                 }}
               />
               <label htmlFor="task-completed">completed</label>
@@ -112,7 +122,7 @@ function UpdateTask() {
                 Save
               </button>
               {isLoading && <div className="loader"></div>}
-              {isSuccess && <p className="success-added">{msg}</p>}
+              {isSuccess && <p className="success-added">Saved, succesfully</p>}
               {isError && (
                 <p className="error">{msg || 'An error has occurred'} </p>
               )}
@@ -124,6 +134,6 @@ function UpdateTask() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default UpdateTask
+export default UpdateTask;
