@@ -20,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1/tasks', require('./routes/tasksRoutes'));
+app.use('/api/v1/tasks/all', require('./routes/getAllTasksRoute'));
 app.use('/api/v1/login', require('./routes/loginRoute'));
 app.use('/api/v1/signup', require('./routes/signupRoute'));
 app.use('/api/v1/updateProfile', require('./routes/updateProfileRoute'));

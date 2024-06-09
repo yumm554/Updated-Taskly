@@ -19,9 +19,7 @@ const updateProfile = async (req, res) => {
 
     // Check if there's anything to update
     if (Object.keys(updateData).length === 0) {
-      return res
-        .status(400)
-        .json({ message: 'No valid fields provided for update.' });
+      return res.status(400).json('No valid fields provided for update.');
     }
 
     // Update the profile
@@ -44,7 +42,7 @@ const updateProfile = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server error occurred.' });
+    res.status(500).json('Server error occurred.');
   }
 };
 

@@ -34,18 +34,21 @@ const getTask = async (req, res) => {
     const { id: taskID } = req.params;
 
     const task = await Task.findOne({ _id: taskID });
+    console.log(task);
     if (!task) {
-      res.status(404).json({ message: 'user not found' });
+      res.status(404).json('task not found');
     }
     res.status(200).json(task);
   } catch (err) {
     console.log(err);
+    return res.status(500).json('An error occurred');
   }
 };
 
 const updateTask = async (req, res) => {
   try {
     const { id: taskID } = req.params;
+    console.log('id', taskID);
 
     const task = await Task.findOneAndUpdate({ _id: taskID }, req.body);
     if (!task) {
