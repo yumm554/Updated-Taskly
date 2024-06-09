@@ -5,12 +5,12 @@ export const useGlobalContext = () => {
   return useContext(GlobalContext)
 }
 const TaskContext = ({ children }) => {
-  const [task, setTask] = useState(null)
-  const [user, setUser] = useState(null)
-  const [getAgain, setGetAgain] = useState(null)
-  const [welcome, setWelcome] = useState(null) //to not show task button in tasks page
+  const [task, setTask] = useState()
+  const [user, setUser] = useState()
+  const [getAgain, setGetAgain] = useState()
+  const [welcome, setWelcome] = useState() //to not show task button in tasks page
   const [menu, setMenu] = useState(false)
-  const [loginBtn, setLoginBtn] = useState(null) //to not show login button in login page
+  const [loginBtn, setLoginBtn] = useState() //to not show login button in login page
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem('user'))
