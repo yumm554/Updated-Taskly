@@ -10,9 +10,9 @@ jest.mock('../../src/handlers/tasksHandler');
 jest.mock('../../src/features/TaskContext', () => ({
   useGlobalContext: () => ({
     user: {
-      username: 'testuser',
+      _id: '66604fae1adf85548436f245',
+      username: 'testuserupdated',
       email: 'testuser@example.com',
-      password: 'testpassword',
     },
     getAgain: false,
     setGetAgain: jest.fn(),
@@ -48,7 +48,7 @@ describe('Task List Component', () => {
     );
 
     await waitFor(() => {
-      expect(accessAllTasks).toHaveBeenCalledWith('testuser@example.com');
+      expect(accessAllTasks).toHaveBeenCalledWith('66604fae1adf85548436f245');
     });
   });
 });

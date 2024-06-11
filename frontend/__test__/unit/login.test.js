@@ -18,7 +18,7 @@ jest.mock('../../src/features/TaskContext', () => ({
 
 describe('login component', () => {
   it('renders without crashing', () => {
-    const { getByLabelText } = render(
+    const { getByLabelText, getByRole } = render(
       <MemoryRouter>
         <Login />
       </MemoryRouter>
@@ -27,6 +27,7 @@ describe('login component', () => {
     // Check if the email and password fields are rendered
     expect(getByLabelText(/email/i)).toBeInTheDocument();
     expect(getByLabelText(/password/i)).toBeInTheDocument();
+    expect(getByRole('button', { name: /login/i })).toBeInTheDocument();
   });
 
   it('handles form submission', async () => {

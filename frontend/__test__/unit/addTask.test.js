@@ -10,9 +10,9 @@ jest.mock('../../src/handlers/tasksHandler');
 jest.mock('../../src/features/TaskContext', () => ({
   useGlobalContext: () => ({
     user: {
+      _id: '66604fae1adf85548436f245',
       username: 'testuser',
-      email: 'testuser@example.com',
-      password: 'testpassword',
+      email: 'user@gmail.com',
     },
   }),
 }));
@@ -61,7 +61,7 @@ describe('Add Task Component', () => {
       expect(createTask).toHaveBeenCalledWith({
         name: 'testing for adding a task',
         dateCreated: formattedDate,
-        email: 'testuser@example.com',
+        id: '66604fae1adf85548436f245',
       });
     });
 
@@ -100,7 +100,7 @@ describe('Add Task Component', () => {
       expect(createTask).toHaveBeenCalledWith({
         name: 'testing for adding a task',
         dateCreated: formattedDate,
-        email: 'testuser@example.com',
+        id: '66604fae1adf85548436f245',
       });
     });
 

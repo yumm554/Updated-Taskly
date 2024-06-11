@@ -39,7 +39,7 @@ describe('Update Task Component', () => {
         name: 'testing for fetching a task',
         completed: false,
         dateCreated: '08 june 2024',
-        email: 'testuser@example.com',
+        userId: '66604fae1adf85548436f245',
       },
     });
 
@@ -88,10 +88,10 @@ describe('Update Task Component', () => {
     getTask.mockResolvedValueOnce({
       data: {
         _id: '66604fd81adf85548436f250',
-        name: 'testing for adding a task',
+        name: 'testing for fetching a task',
         completed: false,
         dateCreated: '08 june 2024',
-        email: 'testuser@example.com',
+        userId: '66604fae1adf85548436f245',
       },
     });
 
@@ -136,10 +136,10 @@ describe('Update Task Component', () => {
     getTask.mockResolvedValueOnce({
       data: {
         _id: '66604fd81adf85548436f250',
-        name: 'testing for adding a task',
+        name: 'testing for fetching a task',
         completed: false,
         dateCreated: '08 june 2024',
-        email: 'testuser@example.com',
+        userId: '66604fae1adf85548436f245',
       },
     });
 

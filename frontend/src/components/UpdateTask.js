@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/updateTask.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { accessAllTasks, getTask, updateTask } from '../handlers/tasksHandler';
+import { getTask, updateTask } from '../handlers/tasksHandler';
 import { useGlobalContext } from '../features/TaskContext';
 import { UpdateTaskSvg } from '../assets/icons/icons';
 import { useParams } from 'react-router-dom';
@@ -50,7 +50,7 @@ function UpdateTask() {
         setMsg(err?.response?.data);
         setIsError(true);
       });
-  }, [user, navigate, id]);
+  }, []);
 
   return (
     <div className="updatetask-main">

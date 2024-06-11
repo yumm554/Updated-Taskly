@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 
 import Signup from '../../src/components/Signup';
 import { signup } from '../../src/handlers/authHandler';
@@ -18,7 +18,7 @@ jest.mock('../../src/features/TaskContext', () => ({
 
 describe('Signup Component', () => {
   it('renders without crashing', () => {
-    const { getByLabelText, getAllByLabelText } = render(
+    const { getByLabelText, getAllByLabelText, getByRole } = render(
       <MemoryRouter>
         <Signup />
       </MemoryRouter>
@@ -29,12 +29,15 @@ describe('Signup Component', () => {
     expect(getByLabelText(/email/i)).toBeInTheDocument();
     expect(getAllByLabelText(/password/i)[0]).toBeInTheDocument();
     expect(getAllByLabelText(/password/i)[1]).toBeInTheDocument();
+    expect(
+      getByRole('button', { name: /create account/i })
+    ).toBeInTheDocument();
   });
 
   it('handles form submission', async () => {
     signup.mockResolvedValueOnce({ data: 'Signed up successfully' });
 
-    const { getByLabelText, getByText, getAllByLabelText } = render(
+    const { getByLabelText, getByText, getByRole, getAllByLabelText } = render(
       <MemoryRouter>
         <Signup />
       </MemoryRouter>
@@ -55,7 +58,7 @@ describe('Signup Component', () => {
     });
 
     // Submit the form
-    fireEvent.click(getByText(/create account/i));
+    fireEvent.click(getByRole('button', { name: /create account/i }));
 
     // Verify that signup function is called with correct data
     await waitFor(() =>
@@ -75,7 +78,7 @@ describe('Signup Component', () => {
       'An error occurred' || 'All fields are required' || 'User already exists';
     signup.mockRejectedValueOnce({ response: { data: errorMessage } });
 
-    const { getByLabelText, getByText, getAllByLabelText, findByText } = render(
+    const { getByLabelText, getByRole, getAllByLabelText, findByText } = render(
       <MemoryRouter>
         <Signup />
       </MemoryRouter>
@@ -96,7 +99,7 @@ describe('Signup Component', () => {
     });
 
     // Submit the form
-    fireEvent.click(getByText(/create account/i));
+    fireEvent.click(getByRole('button', { name: /create account/i }));
 
     // Verify that signup function is called with correct data
     await waitFor(() =>

@@ -26,7 +26,7 @@ function UpdateProfile() {
       setEmail(user?.email || '');
       setPassword('');
     }
-  }, [user]);
+  }, [navigate]);
 
   return (
     <div className="update-login-main-container">
