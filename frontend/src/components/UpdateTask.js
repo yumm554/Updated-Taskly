@@ -25,19 +25,6 @@ function UpdateTask() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   accessAllTasks(user?.email)
-  //     .then((resp) => {
-  //       setTask(resp?.find((task) => task._id === id));
-  //       setIsLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       setIsError(true);
-  //       setIsLoading(false);
-  //     });
-  // }, [user, navigate, id]);
-
   useEffect(() => {
     getTask(id)
       .then((resp) => {

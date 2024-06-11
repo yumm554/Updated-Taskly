@@ -51,10 +51,10 @@ describe('Signup Component', () => {
       target: { value: 'testuser@example.com' },
     });
     fireEvent.change(getAllByLabelText(/password/i)[0], {
-      target: { value: 'testpassword' },
+      target: { value: 'testPassword4' },
     });
     fireEvent.change(getAllByLabelText(/password/i)[1], {
-      target: { value: 'testpassword' },
+      target: { value: 'testPassword4' },
     });
 
     // Submit the form
@@ -65,7 +65,7 @@ describe('Signup Component', () => {
       expect(signup).toHaveBeenCalledWith({
         username: 'testuser',
         email: 'testuser@example.com',
-        password: 'testpassword',
+        password: 'testPassword4',
       })
     );
 
@@ -92,10 +92,10 @@ describe('Signup Component', () => {
       target: { value: 'testuser@example.com' },
     });
     fireEvent.change(getAllByLabelText(/password/i)[0], {
-      target: { value: 'testpassword' },
+      target: { value: 'testPassword4' },
     });
     fireEvent.change(getAllByLabelText(/password/i)[1], {
-      target: { value: 'testpassword' },
+      target: { value: 'testPassword4' },
     });
 
     // Submit the form
@@ -106,7 +106,7 @@ describe('Signup Component', () => {
       expect(signup).toHaveBeenCalledWith({
         username: 'testuser',
         email: 'testuser@example.com',
-        password: 'testpassword',
+        password: 'testPassword4',
       })
     );
 
